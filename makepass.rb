@@ -20,6 +20,8 @@ OptionParser.new do |opts|
 end.parse!
 
 words = File.read("/usr/share/dict/words").split("\n")
+puts "Choosing passphrases with #{length} words from #{words.count} word dictionary"
+puts "Each passphrase should have #{Math::log2(words.count ** length).floor} bits of entropy"
 count.times do
   puts length.times.collect { words[SecureRandom.random_number(words.count)] }.join("").downcase
 end
