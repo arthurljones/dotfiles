@@ -13,8 +13,9 @@ export EDITOR=vim
 # Show git status in prompt
 export GIT_PS1_SHOWUPSTREAM="autoZZ"
 export GIT_PS1_SHOWCOLORHINTS="yes"
-export PROMPT_COMMAND='__git_ps1 "\u@\h:\w" "\\\$ ";'
-PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ "
+command_prefix="\u@$COLOR_BROWN\h$COLOR_RESET:\w\a"
+command_suffix="$COLOR_BOLD_WHITE\\\$$COLOR_RESET "
+export PROMPT_COMMAND='__git_ps1 "$command_prefix" "$command_suffix";'
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ]; then
