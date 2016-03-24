@@ -7,7 +7,9 @@ source "$dotfile_dir/ssh_host_autocomplete.sh"
 source "$dotfile_dir/shell_colors.sh"
 
 export CLICOLOR=1
-export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
+export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx #BSD/OSX
+export LS_COLORS=$LSCOLORS #Linux
+export LS_OPTIONS='--color=auto'
 export EDITOR=vim
 
 # Show git status in prompt
