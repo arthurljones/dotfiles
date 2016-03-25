@@ -7,9 +7,21 @@ dotfile_dir=${script_path%/*}
 . "$dotfile_dir/ssh_host_autocomplete.sh"
 . "$dotfile_dir/shell_colors.sh"
 
+if grep -s "Debian" /etc/issue > /dev/null; then
+    is_debian="true"
+fi
+
+if uname | grep -s "Darwin" > /dev/null; then
+    is_darwin="true"
+fi
+
 export CLICOLOR=1
-export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx #BSD/OSX
-export LS_COLORS=$LSCOLORS #Linux
+if [ -n $is_darwin ]; then
+    export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx #BSD/OSX
+else
+    eval `dircolors -b`
+fi
+
 export LS_OPTIONS='--color=auto'
 export EDITOR=vim
 
@@ -46,7 +58,7 @@ HISTFILESIZE=2000
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-if grep -s "Debian" /etc/issue > /dev/null; then
+if [ -n $is_debian ]; then
     # set variable identifying the chroot you work in (used in the prompt below)
     if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
         debian_chroot=$(cat /etc/debian_chroot)
