@@ -17,7 +17,7 @@ export GIT_PS1_SHOWUPSTREAM="autoZZ"
 export GIT_PS1_SHOWCOLORHINTS="yes"
 command_prefix="\u@\[$COLOR_BROWN\]\h\[$COLOR_RESET\]:\w\a"
 command_suffix="\[$COLOR_BOLD_WHITE\]\\\$\[$COLOR_RESET\] "
-export PROMPT_COMMAND='__git_ps1 $command_prefix $command_suffix'
+PROMPT_COMMAND='__git_ps1 $command_prefix $command_suffix'
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ]; then
