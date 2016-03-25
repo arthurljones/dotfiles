@@ -7,7 +7,6 @@ source "$dotfile_dir/ssh_host_autocomplete.sh"
 source "$dotfile_dir/shell_colors.sh"
 
 export CLICOLOR=1
-export CLICOLOR=1
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx #BSD/OSX
 export LS_COLORS=$LSCOLORS #Linux
 export LS_OPTIONS='--color=auto'
@@ -16,9 +15,9 @@ export EDITOR=vim
 # Show git status in prompt
 export GIT_PS1_SHOWUPSTREAM="autoZZ"
 export GIT_PS1_SHOWCOLORHINTS="yes"
-command_prefix="\u@\[${COLOR_BROWN}\]\h\[${COLOR_RESET}\]:\w\a"
+command_prefix="\u@\[$COLOR_BROWN\]\h\[$COLOR_RESET\]:\w\a"
 command_suffix="\[$COLOR_BOLD_WHITE\]\\\$\[$COLOR_RESET\] "
-export PROMPT_COMMAND='__git_ps1 "$command_prefix" "$command_suffix";'
+export PROMPT_COMMAND='__git_ps1 $command_prefix $command_suffix'
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ]; then
