@@ -48,13 +48,12 @@ export GIT_PS1_SHOWDIRTYSTATE="yes"
 
 PROMPT_COMMAND='___git_ps1 "\u@\[$COLOR_PURPLE\]\h\[$COLOR_RESET\]:\w\a" "\$ "'
 
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ]; then
-    PATH="$HOME/bin:$PATH"
-fi
+# set PATH so it includes user's private bin
+PATH="$HOME/bin:$PATH"
 
 # Load host-specific commands
-host_specific="$dotfiles/hosts/$HOSTNAME"
+host_specific="$dotfile_dir/hosts/$HOSTNAME.sh"
+echo $host_specific
 if [ -f $host_specific ]; then
     . $host_specific
 fi
