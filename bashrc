@@ -46,7 +46,7 @@ export GIT_PS1_SHOWUPSTREAM="autoZZ"
 export GIT_PS1_SHOWCOLORHINTS="yes"
 export GIT_PS1_SHOWDIRTYSTATE="yes"
 
-PROMPT_COMMAND='___git_ps1 "\u@\[$COLOR_BROWN\]\h\[$COLOR_RESET\]:\w\a" "\$ "'
+PROMPT_COMMAND='___git_ps1 "\u@\[$COLOR_PURPLE\]\h\[$COLOR_RESET\]:\w\a" "\$ "'
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ]; then
