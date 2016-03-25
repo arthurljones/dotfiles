@@ -3,6 +3,7 @@ echo "Loading .bashrc"
 script_path=$(realpath $BASH_SOURCE)
 dotfile_dir=${script_path%/*}
 
+unset -f __git_ps1_show_upstream __git_ps1_upstream_name __git_ps1_colorize_gitstring __git_eread __git_ps1
 . "$dotfile_dir/git-prompt.sh"
 . "$dotfile_dir/ssh_host_autocomplete.sh"
 . "$dotfile_dir/shell_colors.sh"

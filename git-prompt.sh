@@ -102,7 +102,6 @@ printf -v __git_printf_supports_v -- '%s' yes >/dev/null 2>&1
 
 # stores the divergence from upstream in $p
 # used by GIT_PS1_SHOWUPSTREAM
-unset -f __git_ps1_show_upstream
 __git_ps1_show_upstream ()
 {
 	local key value
@@ -227,7 +226,6 @@ __git_ps1_show_upstream ()
 				p="$p ${__git_ps1_upstream_name}"
 				# not needed anymore; keep user's
 				# environment clean
-				unset __git_ps1_upstream_name
 			fi
 		fi
 	fi
@@ -237,7 +235,7 @@ __git_ps1_show_upstream ()
 # Helper function that is meant to be called from __git_ps1.  It
 # injects color codes into the appropriate gitstring variables used
 # to build a gitstring.
-unset -f __git_ps1_colorize_gitstring
+
 __git_ps1_colorize_gitstring ()
 {
 	if [[ -n ${ZSH_VERSION-} ]]; then
@@ -281,7 +279,6 @@ __git_ps1_colorize_gitstring ()
 	r="$c_clear$r"
 }
 
-unset -f __git_eread
 __git_eread ()
 {
 	local f="$1"
@@ -301,7 +298,6 @@ __git_eread ()
 # customize the output of the git-status string.
 # In this mode you can request colored hints using GIT_PS1_SHOWCOLORHINTS=true
 
-unset -f __git_ps1
 __git_ps1 ()
 {
 	# preserve exit status
