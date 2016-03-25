@@ -16,7 +16,12 @@ export EDITOR=vim
 export GIT_PS1_SHOWUPSTREAM="autoZZ"
 export GIT_PS1_SHOWCOLORHINTS="yes"
 export GIT_PS1_SHOWDIRTYSTATE="yes"
-PROMPT_COMMAND='__git_ps1 "\\u@\\[$COLOR_BROWN\\]\\h\\[$COLOR_RESET\\]:\\w\\a" "\\$ "'
+
+if uname | grep -s "Darwin" > /dev/null; then
+    PROMPT_COMMAND='__git_ps1 "\u@\[$COLOR_BROWN\]\h\[$COLOR_RESET\]:\w\a" "\$ "'
+else
+    echo ""
+fi
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ]; then

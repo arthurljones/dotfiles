@@ -66,6 +66,10 @@
 #     git           always compare HEAD to @{upstream}
 #     svn           always compare HEAD to your SVN upstream
 #
+# You can change the separator between the branch name and the above
+# state symbols by setting GIT_PS1_STATESEPARATOR. The default separator
+# is SP.
+#
 # By default, __git_ps1 will compare HEAD to your SVN upstream if it can
 # find one, or @{upstream} otherwise.  Once you have set
 # GIT_PS1_SHOWUPSTREAM, you can override it on a per-repository basis by
@@ -84,6 +88,11 @@
 # GIT_PS1_SHOWCOLORHINTS to a nonempty value. The colors are based on
 # the colored output of "git status -sb" and are available only when
 # using __git_ps1 for PROMPT_COMMAND or precmd.
+#
+# If you would like __git_ps1 to do nothing in the case when the current
+# directory is set up to be ignored by git, then set
+# GIT_PS1_HIDE_IF_PWD_IGNORED to a nonempty value. Override this on the
+# repository level by setting bash.hideIfPwdIgnored to "false".
 
 # check whether printf supports -v
 __git_printf_supports_v=
@@ -91,6 +100,7 @@ printf -v __git_printf_supports_v -- '%s' yes >/dev/null 2>&1
 
 # stores the divergence from upstream in $p
 # used by GIT_PS1_SHOWUPSTREAM
+unset -f __git_ps1_show_upstream
 __git_ps1_show_upstream ()
 {
 	local key value
@@ -225,6 +235,7 @@ __git_ps1_show_upstream ()
 # Helper function that is meant to be called from __git_ps1.  It
 # injects color codes into the appropriate gitstring variables used
 # to build a gitstring.
+unset -f __git_ps1_colorize_gitstring
 __git_ps1_colorize_gitstring ()
 {
 	if [[ -n ${ZSH_VERSION-} ]]; then
@@ -268,9 +279,10 @@ __git_ps1_colorize_gitstring ()
 	r="$c_clear$r"
 }
 
+unset -f __git_eread
 __git_eread ()
 {
-	f="$1"
+	local f="$1"
 	shift
 	test -r "$f" && read "$@" <"$f"
 }
@@ -286,10 +298,12 @@ __git_eread ()
 # The optional third parameter will be used as printf format string to further
 # customize the output of the git-status string.
 # In this mode you can request colored hints using GIT_PS1_SHOWCOLORHINTS=true
+
+unset -f __git_ps1
 __git_ps1 ()
 {
-	echo "__git_ps1"
-
+	# preserve exit status
+	local exit=$?
 	local pcmode=no
 	local detached=no
 	local ps1pc_start='\u@\h:\w '
@@ -301,14 +315,16 @@ __git_ps1 ()
 			ps1pc_start="$1"
 			ps1pc_end="$2"
 			printf_format="${3:-$printf_format}"
+			# set PS1 to a plain prompt so that we can
+			# simply return early if the prompt should not
+			# be decorated
+			PS1="$ps1pc_start$ps1pc_end"
 		;;
 		0|1)	printf_format="${1:-$printf_format}"
 		;;
-		*)	return
+		*)	return $exit
 		;;
 	esac
-	echo "__git_ps1 $pcmode"
-
 
 	# ps1_expanded:  This variable is set to 'yes' if the shell
 	# subjects the value of PS1 to parameter expansion:
@@ -354,13 +370,7 @@ __git_ps1 ()
 	rev_parse_exit_code="$?"
 
 	if [ -z "$repo_info" ]; then
-		if [ $pcmode = yes ]; then
-			#In PC mode PS1 always needs to be set
-			PS1="$ps1pc_start$ps1pc_end"
-			echo "__git_ps1 a setting PS1=$PS1"
-
-		fi
-		return
+		return $exit
 	fi
 
 	local short_sha
@@ -374,6 +384,14 @@ __git_ps1 ()
 	repo_info="${repo_info%$'\n'*}"
 	local inside_gitdir="${repo_info##*$'\n'}"
 	local g="${repo_info%$'\n'*}"
+
+	if [ "true" = "$inside_worktree" ] &&
+	   [ -n "${GIT_PS1_HIDE_IF_PWD_IGNORED-}" ] &&
+	   [ "$(git config --bool bash.hideIfPwdIgnored)" != "false" ] &&
+	   git check-ignore -q .
+	then
+		return $exit
+	fi
 
 	local r=""
 	local b=""
@@ -418,12 +436,7 @@ __git_ps1 ()
 		else
 			local head=""
 			if ! __git_eread "$g/HEAD" head; then
-				if [ $pcmode = yes ]; then
-					PS1="$ps1pc_start$ps1pc_end"
-					echo "__git_ps1 b setting PS1=$PS1"
-
-				fi
-				return
+				return $exit
 			fi
 			# is it a symbolic ref?
 			b="${head#ref: }"
@@ -468,10 +481,9 @@ __git_ps1 ()
 		if [ -n "${GIT_PS1_SHOWDIRTYSTATE-}" ] &&
 		   [ "$(git config --bool bash.showDirtyState)" != "false" ]
 		then
-			git diff --no-ext-diff --quiet --exit-code || w="*"
-			if [ -n "$short_sha" ]; then
-				git diff-index --cached --quiet HEAD -- || i="+"
-			else
+			git diff --no-ext-diff --quiet || w="*"
+			git diff --no-ext-diff --cached --quiet || i="+"
+			if [ -z "$short_sha" ] && [ -z "$i" ]; then
 				i="#"
 			fi
 		fi
@@ -483,7 +495,7 @@ __git_ps1 ()
 
 		if [ -n "${GIT_PS1_SHOWUNTRACKEDFILES-}" ] &&
 		   [ "$(git config --bool bash.showUntrackedFiles)" != "false" ] &&
-		   git ls-files --others --exclude-standard --error-unmatch -- '*' >/dev/null 2>/dev/null
+		   git ls-files --others --exclude-standard --directory --no-empty-directory --error-unmatch -- ':/*' >/dev/null 2>/dev/null
 		then
 			u="%${ZSH_VERSION+%}"
 		fi
@@ -516,9 +528,9 @@ __git_ps1 ()
 			printf -v gitstring -- "$printf_format" "$gitstring"
 		fi
 		PS1="$ps1pc_start$gitstring$ps1pc_end"
-		echo "__git_ps1 c setting PS1=$PS1"
-
 	else
 		printf -- "$printf_format" "$gitstring"
 	fi
+
+	return $exit
 }
