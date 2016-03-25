@@ -17,12 +17,12 @@ if uname | grep -qs "Darwin"; then
     is_darwin="true"
 fi
 
-if [ -n $is_darwin ]; then
-    export CLICOLOR=1
-    export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx #BSD/OSX
-else
+if [ -z "$is_darwin" ]; then
     eval `dircolors -b`
     alias ls='/bin/ls --color=auto'
+else
+    export CLICOLOR=1
+    export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx #BSD/OSX
 fi
 
 export EDITOR=vim
