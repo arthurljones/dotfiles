@@ -15,14 +15,14 @@ if uname | grep -s "Darwin" > /dev/null; then
     is_darwin="true"
 fi
 
-export CLICOLOR=1
 if [ -n $is_darwin ]; then
+    export CLICOLOR=1
     export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx #BSD/OSX
 else
     eval `dircolors -b`
+    alias ls='/bin/ls --color=auto'
 fi
 
-export LS_OPTIONS='--color=auto'
 export EDITOR=vim
 
 # Show git status in prompt
