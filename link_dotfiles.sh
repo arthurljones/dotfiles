@@ -1,5 +1,8 @@
 #!/bin/bash
-dotfile_dir=${BASH_SOURCE%/*}
+
+script_path=$(realpath $BASH_SOURCE)
+dotfile_dir=${script_path%/*}
+
 for dotfile in bashrc bash_profile profile vimrc; do
     src="$HOME/.$dotfile"
     dst="$dotfile_dir/$dotfile"
