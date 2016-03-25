@@ -16,9 +16,7 @@ export EDITOR=vim
 export GIT_PS1_SHOWUPSTREAM="autoZZ"
 export GIT_PS1_SHOWCOLORHINTS="yes"
 export GIT_PS1_SHOWDIRTYSTATE="yes"
-export GIT_PS1_PREFIX="\\\\u@\\\\[$COLOR_BROWN\\\\]\\\\h\\\\[$COLOR_RESET\\\\]:\\\\w\\\\a "
-export GIT_PS1_SUFFIX="\\\\$ "
-PROMPT_COMMAND='__git_ps1 $GIT_PS1_PREFIX $GIT_PS1_SUFFIX'
+PROMPT_COMMAND='__git_ps1 "\\u@\\[$COLOR_BROWN\\]\\h\\[$COLOR_RESET\\]:\\w\\a" "\\$ "'
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ]; then

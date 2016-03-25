@@ -288,6 +288,8 @@ __git_eread ()
 # In this mode you can request colored hints using GIT_PS1_SHOWCOLORHINTS=true
 __git_ps1 ()
 {
+	echo "__git_ps1"
+
 	local pcmode=no
 	local detached=no
 	local ps1pc_start='\u@\h:\w '
@@ -305,6 +307,8 @@ __git_ps1 ()
 		*)	return
 		;;
 	esac
+	echo "__git_ps1 $pcmode"
+
 
 	# ps1_expanded:  This variable is set to 'yes' if the shell
 	# subjects the value of PS1 to parameter expansion:
@@ -353,6 +357,8 @@ __git_ps1 ()
 		if [ $pcmode = yes ]; then
 			#In PC mode PS1 always needs to be set
 			PS1="$ps1pc_start$ps1pc_end"
+			echo "__git_ps1 a setting PS1=$PS1"
+
 		fi
 		return
 	fi
@@ -414,6 +420,8 @@ __git_ps1 ()
 			if ! __git_eread "$g/HEAD" head; then
 				if [ $pcmode = yes ]; then
 					PS1="$ps1pc_start$ps1pc_end"
+					echo "__git_ps1 b setting PS1=$PS1"
+
 				fi
 				return
 			fi
@@ -508,7 +516,8 @@ __git_ps1 ()
 			printf -v gitstring -- "$printf_format" "$gitstring"
 		fi
 		PS1="$ps1pc_start$gitstring$ps1pc_end"
-		echo "set PS1 to $PS1"
+		echo "__git_ps1 c setting PS1=$PS1"
+
 	else
 		printf -- "$printf_format" "$gitstring"
 	fi
