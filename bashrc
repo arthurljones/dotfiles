@@ -2,9 +2,9 @@ echo "Loading .bashrc"
 
 dotfile_dir="$HOME/dotfiles"
 
-source "$dotfile_dir/git-prompt.sh"
-source "$dotfile_dir/ssh_host_autocomplete.sh"
-source "$dotfile_dir/shell_colors.sh"
+. "$dotfile_dir/git-prompt.sh"
+. "$dotfile_dir/ssh_host_autocomplete.sh"
+. "$dotfile_dir/shell_colors.sh"
 
 export CLICOLOR=1
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx #BSD/OSX
@@ -45,10 +45,7 @@ HISTFILESIZE=2000
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-
-if grep -s "Debian" /etc/issue; then
-    echo "Debian system"
-
+if grep -s "Debian" /etc/issue > /dev/null; then
     # set variable identifying the chroot you work in (used in the prompt below)
     if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
         debian_chroot=$(cat /etc/debian_chroot)
