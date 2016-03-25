@@ -508,6 +508,7 @@ __git_ps1 ()
 			printf -v gitstring -- "$printf_format" "$gitstring"
 		fi
 		PS1="$ps1pc_start$gitstring$ps1pc_end"
+		echo "set PS1 to $PS1"
 	else
 		printf -- "$printf_format" "$gitstring"
 	fi
