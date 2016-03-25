@@ -7,11 +7,13 @@ dotfile_dir=${script_path%/*}
 . "$dotfile_dir/ssh_host_autocomplete.sh"
 . "$dotfile_dir/shell_colors.sh"
 
-if grep -s "Debian" /etc/issue > /dev/null; then
+if  grep -qs "Debian" /etc/issue; then
+    echo "Debian"
     is_debian="true"
 fi
 
-if uname | grep -s "Darwin" > /dev/null; then
+if uname | grep -qs "Darwin"; then
+    echo "OSX"
     is_darwin="true"
 fi
 
