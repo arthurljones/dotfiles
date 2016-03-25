@@ -53,7 +53,6 @@ PATH="$HOME/bin:$PATH"
 
 # Load host-specific commands
 host_specific="$dotfile_dir/hosts/$HOSTNAME.sh"
-echo $host_specific
 if [ -f $host_specific ]; then
     . $host_specific
 fi
