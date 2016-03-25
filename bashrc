@@ -1,6 +1,6 @@
 echo "Loading .bashrc"
 
-dotfile_dir="$HOME/dotfiles"
+dotfile_dir=${BASH_SOURCE%/*}
 
 . "$dotfile_dir/git-prompt.sh"
 . "$dotfile_dir/ssh_host_autocomplete.sh"
