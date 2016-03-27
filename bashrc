@@ -13,6 +13,11 @@ if uname | grep -qs "Darwin"; then
     is_darwin="true"
 fi
 
+if [[ $EUID -eq 0 ]]; then
+    echo $EUID
+    is_root="true"
+fi
+
 if [ -n "$is_debian" ]; then
     # set variable identifying the chroot you work in
     if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
@@ -45,7 +50,11 @@ export GIT_PS1_SHOWUPSTREAM="autoZZ"
 export GIT_PS1_SHOWCOLORHINTS="yes"
 export GIT_PS1_SHOWDIRTYSTATE="yes"
 
-PROMPT_COMMAND='___git_ps1 "\u@\[$COLOR_PURPLE\]\h\[$COLOR_RESET\]:\w\a" "\$ "'
+if [ -n "$is_root" ]; then
+    PROMPT_COMMAND='___git_ps1 "\[$COLOR_RED\]ROOT\[$COLOR_RESET\]@\[$COLOR_PURPLE\]\h\[$COLOR_RESET\]:\w\a" " ### "'
+else
+    PROMPT_COMMAND='___git_ps1 "\u@\[$COLOR_PURPLE\]\h\[$COLOR_RESET\]:\w\a" " \$ "'
+fi
 
 # set PATH so it includes user's private bin
 PATH="$HOME/bin:$PATH"

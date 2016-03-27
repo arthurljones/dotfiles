@@ -13,4 +13,4 @@ export PATH="/Users/aj/bin/Sencha/Cmd/6.0.2.14/..:$PATH"
 
 #Ruby Version Manager
 export PATH="$HOME/.rvm/bin:$PATH" # Add RVM to PATH for scripting
-source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+[[ -f $HOME/.rvm/scripts/rvm ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
