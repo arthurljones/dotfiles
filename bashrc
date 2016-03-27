@@ -31,13 +31,12 @@ if [ -n "$is_debian" ]; then
     fi
 fi
 
-if [ -n "$is_darwin" ]; then
-    export CLICOLOR=1
-    export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx #BSD/OSX
-else
-    eval `dircolors -b`
-    alias ls='/bin/ls --color=auto'
-fi
+#Set colors for various filetypes
+eval `dircolors -b $dotfile_dir/dircolors.ansi-dark`
+
+alias ls="ls --color=always"
+alias grep="grep --color=always"
+alias egrep="egrep --color=always"
 
 export EDITOR=vim
 
