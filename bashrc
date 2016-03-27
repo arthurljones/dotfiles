@@ -14,7 +14,7 @@ if uname | grep -qs "Darwin"; then
 fi
 
 if [[ $EUID -eq 0 ]]; then
-    echo $EUID
+    echo "$COLOR_RED!!! ROOT SHELL !!!$COLOR_RESET"
     is_root="true"
 fi
 
