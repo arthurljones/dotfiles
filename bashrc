@@ -1,6 +1,15 @@
 script_path=$(realpath $BASH_SOURCE)
 dotfile_dir=${script_path%/*}
 
+# set PATH so it includes user's private bin
+PATH="$HOME/bin:$PATH"
+
+# Load host-specific commands
+host_specific="$dotfile_dir/hosts/$HOSTNAME.sh"
+if [ -f $host_specific ]; then
+    . $host_specific
+fi
+
 . "$dotfile_dir/git-prompt.sh"
 . "$dotfile_dir/ssh_host_autocomplete.sh"
 . "$dotfile_dir/shell_colors.sh"
@@ -51,18 +60,9 @@ export GIT_PS1_SHOWCOLORHINTS="yes"
 export GIT_PS1_SHOWDIRTYSTATE="yes"
 
 if [ -n "$is_root" ]; then
-    PROMPT_COMMAND='___git_ps1 "\[$COLOR_RED\]ROOT\[$COLOR_RESET\]@\[$COLOR_PURPLE\]\h\[$COLOR_RESET\]:\w\a" " ### "'
+    PROMPT_COMMAND='___git_ps1 "\[$COLOR_RED\]ROOT\[$COLOR_RESET\]@\[$COLOR_PURPLE\]\h\[$COLOR_RESET\]:\w\a" "### "'
 else
-    PROMPT_COMMAND='___git_ps1 "\u@\[$COLOR_PURPLE\]\h\[$COLOR_RESET\]:\w\a" " \$ "'
-fi
-
-# set PATH so it includes user's private bin
-PATH="$HOME/bin:$PATH"
-
-# Load host-specific commands
-host_specific="$dotfile_dir/hosts/$HOSTNAME.sh"
-if [ -f $host_specific ]; then
-    . $host_specific
+    PROMPT_COMMAND='___git_ps1 "\u@\[$COLOR_PURPLE\]\h\[$COLOR_RESET\]:\w\a" "\$ "'
 fi
 
 # don't put duplicate lines or lines starting with space in the history.
