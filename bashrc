@@ -18,7 +18,6 @@ source "$dotfile_dir/git-prompt.sh"
 source "$dotfile_dir/ssh_host_autocomplete.sh"
 
 function title {
-  echo "Setting title"
   echo -ne "\033];$*\007"
 }
 
