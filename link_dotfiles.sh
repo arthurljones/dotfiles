@@ -24,14 +24,17 @@ if [ -z $dotfile_dir ]; then
 fi
 
 echo "Linking dotfiles..."
-for dotfile in bashrc bash_profile profile vimrc; do
+for dotfile in bashrc bash_profile profile vim vimrc gitconfig; do
     src="$HOME/.$dotfile"
     dst="$dotfile_dir/$dotfile"
 
     if [ -n "$force" ]; then
-        if [[ -f $src ]]; then
+        #Remove it if it's a file or a symlink
+        if [[ -f $src ]] || [[ -h $src ]]; then
             echo "Removing $src"
             rm $src
+        elif [[ -d $src ]]; then
+            echo "Not removing directory $src, do it manually if you mean it"
         fi
     fi
 

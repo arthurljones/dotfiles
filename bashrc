@@ -10,9 +10,30 @@ if [ -f $host_specific ]; then
     . $host_specific
 fi
 
-. "$dotfile_dir/git-prompt.sh"
-. "$dotfile_dir/ssh_host_autocomplete.sh"
-. "$dotfile_dir/shell_colors.sh"
+# Provides ___git_ps1 function (as distinct from __git_ps1 function
+# present by default on some hosts) to do git status in prompt
+source "$dotfile_dir/git-prompt.sh"
+
+# Autocomplete ssh hostnames using .ssh/config
+source "$dotfile_dir/ssh_host_autocomplete.sh"
+
+#Colors using tput (so the vars contain the actual control characters)
+if [[ $(tput colors) -ge 256 ]] 2>/dev/null; then
+  MAGENTA=$(tput setaf 9)
+  ORANGE=$(tput setaf 172)
+  GREEN=$(tput setaf 190)
+  PURPLE=$(tput setaf 141)
+  WHITE=$(tput setaf 256)
+else
+  MAGENTA=$(tput setaf 5)
+  ORANGE=$(tput setaf 4)
+  GREEN=$(tput setaf 2)
+  PURPLE=$(tput setaf 1)
+  WHITE=$(tput setaf 7)
+fi
+RED=$(tput setaf 1)
+BOLD=$(tput bold)
+RESET=$(tput sgr0)
 
 if  grep -qs "Debian" /etc/issue; then
     is_debian="true"
@@ -23,7 +44,7 @@ if uname | grep -qs "Darwin"; then
 fi
 
 if [[ $EUID -eq 0 ]]; then
-    echo -e "$COLOR_RED!!! ROOT SHELL !!!$COLOR_RESET"
+    echo -e "$RED!!! ROOT SHELL !!!$RESET"
     is_root="true"
 fi
 
@@ -54,16 +75,24 @@ alias egrep="egrep --color=always"
 
 export EDITOR=vim
 
-# Show git status in prompt
+# Options for ___git_ps1
 export GIT_PS1_SHOWUPSTREAM="autoZZ"
 export GIT_PS1_SHOWCOLORHINTS="yes"
 export GIT_PS1_SHOWDIRTYSTATE="yes"
 
+# root gets a different username and prompt
 if [ -n "$is_root" ]; then
-    PROMPT_COMMAND='___git_ps1 "\[$COLOR_RED\]ROOT\[$COLOR_RESET\]@\[$COLOR_PURPLE\]\h\[$COLOR_RESET\]:\w\a" "### "'
+  user=$RED"ROOT"$RESET
+  prompt="###"
 else
-    PROMPT_COMMAND='___git_ps1 "\u@\[$COLOR_PURPLE\]\h\[$COLOR_RESET\]:\w\a" "\$ "'
+  user='\u'
+  prompt='\$'
 fi
+
+PS1=$user'@\['$ORANGE'\]\h\['$RESET'\]:\w\a$(___git_ps1 "( %s)")'$prompt' '
+
+# iTerm2 shell integration
+source "$dotfile_dir/iterm2_shell_integration.`basename $SHELL`"
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
