@@ -17,6 +17,21 @@ source "$dotfile_dir/git-prompt.sh"
 # Autocomplete ssh hostnames using .ssh/config
 source "$dotfile_dir/ssh_host_autocomplete.sh"
 
+function title {
+  echo "Setting title"
+  echo -ne "\033];$*\007"
+}
+
+function update_dotfiles {
+  if [[ $EUID -ne 0 ]]; then
+    echo "Updating dotfiles..."
+    pushd $dotfile_dir > /dev/null
+    git pull origin master
+    ./link_dotfiles.sh
+    popd > /dev/null
+  fi
+}
+
 #Colors using tput (so the vars contain the actual control characters)
 if [[ $(tput colors) -ge 256 ]] 2>/dev/null; then
   MAGENTA=$(tput setaf 9)
@@ -35,20 +50,12 @@ RED=$(tput setaf 1)
 BOLD=$(tput bold)
 RESET=$(tput sgr0)
 
-if  grep -qs "Debian" /etc/issue; then
-    is_debian="true"
-fi
-
-if uname | grep -qs "Darwin"; then
-    is_darwin="true"
-fi
-
 if [[ $EUID -eq 0 ]]; then
-    echo -e "$RED!!! ROOT SHELL !!!$RESET"
-    is_root="true"
+  echo -e "$RED!!! ROOT SHELL !!!$RESET"
 fi
 
-if [ -n "$is_debian" ]; then
+#Debian-specific commands
+if  grep -qs "Debian" /etc/issue; then
     # set variable identifying the chroot you work in
     if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
         debian_chroot=$(cat /etc/debian_chroot)
@@ -81,18 +88,22 @@ export GIT_PS1_SHOWCOLORHINTS="yes"
 export GIT_PS1_SHOWDIRTYSTATE="yes"
 
 # root gets a different username and prompt
-if [ -n "$is_root" ]; then
-  user=$RED"ROOT"$RESET
+if [[ $EUID -eq 0 ]]; then
+  prompt_user=$RED"ROOT"$RESET
   prompt="###"
 else
-  user='\u'
+  prompt_user=$USER
   prompt='\$'
 fi
 
-PS1=$user'@\['$ORANGE'\]\h\['$RESET'\]:\w\a$(___git_ps1 "( %s)")'$prompt' '
+# Set the custom prompt. Needs to happen before iTerm2 shell integration or it won't stick
+PS1=$prompt_user'@\['$ORANGE'\]\h\['$RESET'\]:\w\a$(___git_ps1 "( %s)")'$prompt' '
 
 # iTerm2 shell integration
 source "$dotfile_dir/iterm2_shell_integration.`basename $SHELL`"
+
+# Set the window title. Needs to happen after loading iTerm2 shell integration
+title "$prompt_user@$HOSTNAME"
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options

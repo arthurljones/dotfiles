@@ -28,9 +28,13 @@ for dotfile in bashrc bash_profile profile vim vimrc gitconfig; do
     src="$HOME/.$dotfile"
     dst="$dotfile_dir/$dotfile"
 
-    if [ -n "$force" ]; then
-        #Remove it if it's a file or a symlink
-        if [[ -f $src ]] || [[ -h $src ]]; then
+    if [[ -h $src ]]; then
+        echo "Removing existing link $src"
+        rm $src
+    fi
+
+    if [[ -n "$force" ]]; then
+        if [[ -f $src ]]; then
             echo "Removing $src"
             rm $src
         elif [[ -d $src ]]; then
