@@ -35,6 +35,9 @@ function update_dotfiles {
   fi
 }
 
+alias df="df -h"
+alias dfi="df -ih"
+
 #Colors using tput (so the vars contain the actual control characters)
 if [[ $(tput colors) -ge 256 ]] 2>/dev/null; then
   MAGENTA=$(tput setaf 9)
