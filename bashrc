@@ -21,6 +21,10 @@ function title {
   echo -ne "\033];$*\007"
 }
 
+function default_title {
+  title "$USER@$HOSTNAME"
+}
+
 function update_dotfiles {
   if [[ $EUID -ne 0 ]]; then
     echo "Updating dotfiles..."
@@ -98,11 +102,10 @@ fi
 # Set the custom prompt. Needs to happen before iTerm2 shell integration or it won't stick
 PS1=$prompt_user'@\['$ORANGE'\]\h\['$RESET'\]:\w\a$(___git_ps1 "( %s)")'$prompt' '
 
+PROMPT_COMMAND="default_title"
+
 # iTerm2 shell integration
 source "$dotfile_dir/iterm2_shell_integration.`basename $SHELL`"
-
-# Set the window title. Needs to happen after loading iTerm2 shell integration
-title "$USER@$HOSTNAME"
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
