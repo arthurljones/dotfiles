@@ -9,8 +9,6 @@
 # has been tested with the default shells on MacOS X 10.4 "Tiger", Ubuntu 5.10
 # "Breezy Badger", Ubuntu 6.06 "Dapper Drake", and Ubuntu 6.10 "Edgy Eft".
 
-echo "Loading iTerm2 Shell Integration"
-
 # Copy screen-run variables from the remote host, if they're available.
 
 # Saved copy of your PS1. This is used to detect if the user changes PS1

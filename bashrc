@@ -103,12 +103,14 @@ else
 fi
 
 # Set the custom prompt. Needs to happen before iTerm2 shell integration or it won't stick
-PS1=$prompt_user'@\['$ORANGE'\]\h\['$RESET'\]:\w\a$(___git_ps1 "( %s)")'$prompt' '
+PS1=$prompt_user'@\['$ORANGE'\]\h\['$RESET'\]:\w\a$(___git_ps1 " (%s)")'$prompt' '
 
 PROMPT_COMMAND="default_title"
 
 # iTerm2 shell integration
+#if [[ $- == *i* ]]; then
 source "$dotfile_dir/iterm2_shell_integration.`basename $SHELL`"
+#fi
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
