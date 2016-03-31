@@ -3,12 +3,27 @@ execute pathogen#infect()
 colorscheme railscasts
 set number
 
+vmap <Tab> >
+vmap <S-Tab> <
 " Don't deselect the selection upon indent/deintent
 vnoremap < <gv
 vnoremap > >gv
 
 au BufNewFile,BufRead gitconfig set filetype=gitconfig
 au BufNewFile,BufRead vimrc set filetype=vim
+au BufNewFile,BufRead vhosts.conf set filetype=apache
+
+" Toggle back and forth between relative and absolute
+" line numbers with C-n
+nnoremap <C-n> :set relativenumber!<cr>
+
+" Switch to absolute numbers when losing focus
+au FocusLost * :set number
+au FocusGained * :set relativenumber
+
+" Switch to absolute line numbers in insert mode
+autocmd InsertEnter * :set number
+autocmd InsertLeave * :set relativenumber
 
 "------------------------------------------------------------
 " Features {{{1
