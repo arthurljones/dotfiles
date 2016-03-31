@@ -38,23 +38,25 @@ function update_dotfiles {
 alias df="df -h"
 alias dfi="df -ih"
 
-#Colors using tput (so the vars contain the actual control characters)
-if [[ $(tput colors) -ge 256 ]] 2>/dev/null; then
-  MAGENTA=$(tput setaf 9)
-  ORANGE=$(tput setaf 172)
-  GREEN=$(tput setaf 190)
-  PURPLE=$(tput setaf 141)
-  WHITE=$(tput setaf 256)
-else
-  MAGENTA=$(tput setaf 5)
-  ORANGE=$(tput setaf 4)
-  GREEN=$(tput setaf 2)
-  PURPLE=$(tput setaf 1)
-  WHITE=$(tput setaf 7)
+if [[ $- == *i* ]]; then
+  #Colors using tput (so the vars contain the actual control characters)
+  if [[ $(tput colors) -ge 256 ]] 2>/dev/null; then
+    MAGENTA=$(tput setaf 9)
+    ORANGE=$(tput setaf 172)
+    GREEN=$(tput setaf 190)
+    PURPLE=$(tput setaf 141)
+    WHITE=$(tput setaf 256)
+  else
+    MAGENTA=$(tput setaf 5)
+    ORANGE=$(tput setaf 4)
+    GREEN=$(tput setaf 2)
+    PURPLE=$(tput setaf 1)
+    WHITE=$(tput setaf 7)
+  fi
+  RED=$(tput setaf 1)
+  BOLD=$(tput bold)
+  RESET=$(tput sgr0)
 fi
-RED=$(tput setaf 1)
-BOLD=$(tput bold)
-RESET=$(tput sgr0)
 
 if [[ $EUID -eq 0 ]]; then
   echo -e "$RED!!! ROOT SHELL !!!$RESET"
