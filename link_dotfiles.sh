@@ -28,21 +28,20 @@ for dotfile in bashrc bash_profile profile vim vimrc gitconfig; do
     src="$HOME/.$dotfile"
     dst="$dotfile_dir/$dotfile"
 
-    if [[ -h $src ]]; then
-        echo "Removing existing link $src"
-        rm $src
+    if [[ -h "$src" ]] && [[ "$dst" == $(readlink "$src") ]]; then
+        echo "Link $src is already up to date"
+        continue
+    elif [[ -e "$src" ]]; then
+        backup="$src.old" 
+        if [[ -e "$backup" ]] && ! [[ -n "$force" ]]; then
+            echo "Backup already exists at $backupc. Use --force to overwrite it"
+        else
+            echo "Backing up existing $src to $backup"
+            mv -f "$src" "$backup"
+        fi 
     fi
 
-    if [[ -n "$force" ]]; then
-        if [[ -f $src ]]; then
-            echo "Removing $src"
-            rm $src
-        elif [[ -d $src ]]; then
-            echo "Not removing directory $src, do it manually if you mean it"
-        fi
-    fi
-
-    if [[ -f "$src" ]]; then
+    if [[ -e "$src" ]]; then
         echo "Not linking $src because it already exists"
     else
         echo "Linking $src -> $dst"
