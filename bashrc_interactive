@@ -97,6 +97,8 @@ PS1=$prompt_user'@\['$ORANGE'\]\h\['$RESET'\]:\w\a$(___git_ps1 " (%s)")'$prompt'
 
 PROMPT_COMMAND="default_title"
 
+$dotfile_dir/remap_mouse_button.sh > /dev/null
+
 # iTerm2 shell integration
 if $dotfile_dir/isiterm2.sh; then
   source "$dotfile_dir/iterm2_shell_integration.`basename $SHELL`"
