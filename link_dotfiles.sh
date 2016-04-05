@@ -24,7 +24,7 @@ if [ -z $dotfile_dir ]; then
 fi
 
 echo "Linking dotfiles..."
-for dotfile in bashrc bash_profile profile vim vimrc gitconfig; do
+for dotfile in bashrc bash_profile profile vim vimrc gitconfig fonts; do
     src="$HOME/.$dotfile"
     dst="$dotfile_dir/$dotfile"
 
