@@ -3,8 +3,10 @@ execute pathogen#infect()
 colorscheme railscasts
 set number
 
+" Use tab and shift-tab to indent and deindent
 vmap <Tab> >
 vmap <S-Tab> <
+
 " Don't deselect the selection upon indent/deintent
 vnoremap < <gv
 vnoremap > >gv
