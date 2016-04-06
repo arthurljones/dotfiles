@@ -3,8 +3,8 @@
 script_path=$(realpath $BASH_SOURCE)
 dotfile_dir=${script_path%/*}
 
-# set PATH so it includes user's private bin
-PATH="$HOME/bin:$PATH"
+[[ -d "$HOME/bin" ]] && PATH="$HOME/bin:$PATH"
+[[ -d "$HOME/tools" ]] && PATH="$HOME/tools:$PATH"
 
 function update_dotfiles {
   if [[ $EUID -ne 0 ]]; then
