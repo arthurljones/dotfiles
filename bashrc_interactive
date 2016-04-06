@@ -15,16 +15,6 @@ function default_title {
   title "$USER@$HOSTNAME"
 }
 
-function update_dotfiles {
-  if [[ $EUID -ne 0 ]]; then
-    echo "Updating dotfiles..."
-    pushd $dotfile_dir > /dev/null
-    git pull origin master
-    ./link_dotfiles.sh
-    popd > /dev/null
-  fi
-}
-
 alias df="df -h"
 alias dfi="df -ih"
 
