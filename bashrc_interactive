@@ -18,6 +18,12 @@ function default_title {
 alias df="df -h"
 alias dfi="df -ih"
 
+# If there's an ssh-agent command but it hasn't been run yet, run it
+# and evaluate its results to set the appropriate env vars
+if type ssh-agent > /dev/null 2>&1 &&  [[ -z "$SSH_AGENT_PID" ]]; then
+    eval `ssh-agent`
+fi
+
 #Colors using tput (so the vars contain the actual control characters)
 if [[ $(tput colors) -ge 256 ]] 2>/dev/null; then
   MAGENTA=$(tput setaf 9)
