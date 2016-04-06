@@ -27,6 +27,10 @@ au FocusGained * :set relativenumber
 autocmd InsertEnter * :set number
 autocmd InsertLeave * :set relativenumber
 
+" Use modelines in files
+set modeline
+set modelines=5
+
 "------------------------------------------------------------
 " Features {{{1
 "
