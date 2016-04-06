@@ -13,6 +13,7 @@ function update_dotfiles {
     git pull origin master
     ./link_dotfiles.sh
     popd > /dev/null
+    source $dotfile_dir/bashrc
   fi
 }
 
