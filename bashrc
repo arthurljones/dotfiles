@@ -26,3 +26,7 @@ fi
 if [[ $- == *i* ]]; then
   source "$dotfile_dir/bashrc_interactive"
 fi
+
+#Ruby Version Manager
+export PATH="$HOME/.rvm/bin:$PATH" # Add RVM to PATH for scripting
+[[ -s $HOME/.rvm/scripts/rvm ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
