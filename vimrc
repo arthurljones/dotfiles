@@ -31,6 +31,16 @@ autocmd InsertLeave * :set relativenumber
 set modeline
 set modelines=5
 
+" Map <C-K> to <C-L> (redraw screen) and also turn off search highlighting until the
+" next search
+nnoremap <C-K> :nohl<CR><C-L>
+
+" Remap split navigation
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
 "------------------------------------------------------------
 " Features {{{1
 "
@@ -81,8 +91,8 @@ set wildmenu
 " Show partial commands in the last line of the screen
 set showcmd
 
-" Highlight searches (use <C-L> to temporarily turn off highlighting; see the
-" mapping of <C-L> below)
+" Highlight searches (use <C-K> to temporarily turn off highlighting; see the
+" mapping of <C-K> above)
 set hlsearch
 
 " Modelines have historically been a source of security vulnerabilities. As
@@ -171,6 +181,3 @@ set expandtab
 " which is the default
 map Y y$
 
-" Map <C-L> (redraw screen) to also turn off search highlighting until the
-" next search
-nnoremap <C-L> :nohl<CR><C-L>
