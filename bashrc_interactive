@@ -21,7 +21,7 @@ alias dfi="df -ih"
 # If there's an ssh-agent command but it hasn't been run yet, run it
 # and evaluate its results to set the appropriate env vars
 if type ssh-agent > /dev/null 2>&1 &&  [[ -z "$SSH_AGENT_PID" ]]; then
-    eval `ssh-agent`
+    eval `ssh-agent` > /dev/null
 fi
 
 #Colors using tput (so the vars contain the actual control characters)
@@ -89,7 +89,7 @@ else
 fi
 
 # Set the custom prompt. Needs to happen before iTerm2 shell integration or it won't stick
-PS1=$prompt_user'@\['$ORANGE'\]\h\['$RESET'\]:\w\a$(___git_ps1 " (%s)")'$prompt' '
+PS1='~> '$prompt_user'@\['$ORANGE'\]\h\['$RESET'\]:\w\a$(___git_ps1 " (%s)")\n'${prompt}' '
 
 PROMPT_COMMAND="default_title"
 
