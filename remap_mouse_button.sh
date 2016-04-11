@@ -1,14 +1,24 @@
 #!/bin/bash
 
 if ! type xinput >/dev/null 2>&1; then
-    echo "No xinput on this system, can't remap mouse"
+    echo "No xinput on this system, can't remap mouse" >&2
+    exit 1
+fi
+
+if [[ -z "$DISPLAY" ]]; then
+    echo "No \$DISPLAY set" >&2
+    exit 1
+fi
+
+if ! xset q &>/dev/null; then
+    echo "No X server at \$DISPLAY [$DISPLAY]" >&2
     exit 1
 fi
 
 mouse_id=$(xinput list | grep "Logitech.*pointer" | head -n 1 |  sed 's/.*id=\([0-9]\+\).*/\1/g')
 
 if [ -z "$mouse_id" ]; then
-    echo "Couldn't find mouse ID"
+    echo "Couldn't find mouse ID" >&2
     exit 1
 fi
 
