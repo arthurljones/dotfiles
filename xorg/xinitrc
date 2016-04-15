@@ -1,0 +1,6 @@
+#!/bin/bash
+
+xorg_conf=$HOME/dotfiles/xorg
+
+$xorg_conf/caps_to_ctrl.sh
+$xorg_conf/remap_mouse_button.sh
