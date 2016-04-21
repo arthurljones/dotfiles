@@ -2,6 +2,7 @@
 
 require "optparse"
 require "securerandom"
+require "pathname"
 
 count = 4
 length = 4
@@ -16,12 +17,15 @@ OptionParser.new do |opts|
   opts.on("-c", "--count NUM", OptionParser::DecimalInteger, "Generate NUM passwords (default #{count}") do |v|
     count = v
   end
-
 end.parse!
 
-words = File.read("/usr/share/dict/words").split("\n")
+
+words = IO.readlines(Pathname(__dir__).join("words.txt")).map(&:chomp)
+combinations = words.count ** length
 puts "Choosing passphrases with #{length} words from #{words.count} word dictionary"
-puts "Each passphrase should have #{Math::log2(words.count ** length).floor} bits of entropy"
+puts "Each passphrase should have #{Math::log2(combinations).floor} bits of entropy,"
+puts "which is stronger than a #{Math::log(combinations, 96).floor} character random pass"
+
 count.times do
   puts length.times.collect { words[SecureRandom.random_number(words.count)] }.join("").downcase
 end
