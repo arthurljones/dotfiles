@@ -24,8 +24,18 @@ if [ -z $dotfile_dir ]; then
 fi
 
 echo "Linking dotfiles..."
-for dotfile in bashrc bash_profile profile vim vimrc gitconfig fonts; do
-    src="$HOME/.$dotfile"
+for dotfile in \
+    bashrc \
+    bash_profile \
+    profile  \
+    vim  \
+    vimrc  \
+    gitconfig  \
+    fonts  \
+    xorg/xinitrc \
+    xorg/xsession \
+    ; do
+    src="$HOME/.$(basename $dotfile)"
     dst="$dotfile_dir/$dotfile"
 
     if [[ -h "$src" ]] && [[ "$dst" == $(readlink "$src") ]]; then
