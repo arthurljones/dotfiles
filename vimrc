@@ -14,6 +14,7 @@ vnoremap > >gv
 au BufNewFile,BufRead gitconfig set filetype=gitconfig
 au BufNewFile,BufRead vimrc set filetype=vim
 au BufNewFile,BufRead vhosts.conf set filetype=apache
+au BufNewFile,BufRead /etc/php*/fpm/* set syntax=dosini
 
 " Toggle back and forth between relative and absolute
 " line numbers with C-n
