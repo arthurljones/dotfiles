@@ -1,6 +1,6 @@
 execute pathogen#infect()
 
-colorscheme railscasts
+colorscheme colorsbox-stblue "railscasts
 set number
 
 " Use tab and shift-tab to indent and deindent
