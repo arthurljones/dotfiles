@@ -6,7 +6,20 @@ if [[ $? -ne 0 ]]; then
     exit
 fi
 
-echo $output \
-    | grep -e '^\s\+Front Left:' \
-    | sed 's/.*\[\([-0-9.]\+\)dB\].*/\1/' \
-    | awk '{printf("%2.0f%\n", (37 + $1) * (100 / 37))}')
+IFS=' ' read max min <<< $(echo "$output" \
+    | grep -e 'Limits: Playback' \
+    | head -n 1 \
+    | sed 's/.*\([0-9]\+\) - \([0-9]\+\).*/\1 -\2/')
+
+mag=$(echo "$output" \
+    | grep -e 'Playback.*dB\]' \
+    | head -n 1 \
+    | sed 's/.*\[\([-0-9.]\+\)dB\].*/\1/')
+
+ratio=$(echo $min $max $mag \
+    | awk '{ printf "%1.4f", ($1 - $3 - $2) / ($1 - $2) }' )
+
+percent=$(echo $ratio \
+    | awk '{ printf "%2.0f%", $1 * 100 }')
+
+echo $percent
