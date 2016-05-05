@@ -16,21 +16,52 @@ au BufNewFile,BufRead vimrc set filetype=vim
 au BufNewFile,BufRead vhosts.conf set filetype=apache
 au BufNewFile,BufRead /etc/php*/fpm/* set syntax=dosini
 
-" Toggle back and forth between relative and absolute
-" line numbers with C-n
-nnoremap <C-n> :set relativenumber!<cr>
 
-" Switch to absolute numbers when losing focus
-au FocusLost * :set number
-au FocusGained * :set relativenumber
+"------------------------------------------------------------
+" Indentation options {{{1
+"
+" Indentation settings according to personal preference.
 
-" Switch to absolute line numbers in insert mode
-autocmd InsertEnter * :set number
-autocmd InsertLeave * :set relativenumber
+" Indentation settings for using 2 spaces instead of tabs.
+" Do not change 'tabstop' from its default value of 8 with this setup.
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+"
+" Ruby is an oddball in the family, use special spacing/rules
+if v:version >= 703
+  " Note: Relative number is quite slow with Ruby, so is cursorline
+  autocmd FileType ruby setlocal ts=2 sts=2 sw=2 norelativenumber nocursorline
+else
+  autocmd FileType ruby setlocal ts=2 sts=2 sw=2
+  " Toggle back and forth between relative and absolute
+  " line numbers with C-n
+  nnoremap <C-n> :set relativenumber!<cr>
+
+  " Switch to absolute numbers when losing focus
+  au FocusLost * :set number
+  au FocusGained * :set relativenumber
+
+  " Switch to absolute line numbers in insert mode
+  autocmd InsertEnter * :set number
+  autocmd InsertLeave * :set relativenumber
+endif
 
 " Use modelines in files
 set modeline
 set modelines=5
+
+if &term =~ "xterm\\|rxvt"
+    " insert mode
+    let &t_SI = "\<Esc>]12;orange\x7"
+    " otherwise
+    let &t_EI = "\<Esc>]12;lightblue\x7"
+    silent !echo -ne "\033]12;blue\007"
+    " reset cursor when vim exits
+    autocmd VimLeave * silent !echo -ne "\033]112\007"
+    " \033]112\007
+    " use \003]12;gray\007 for gnome-terminal and rxvt up to version 9.21
+endif
 
 " Map <C-K> to <C-L> (redraw screen) and also turn off search highlighting until the
 " next search
@@ -161,17 +192,6 @@ set notimeout ttimeout ttimeoutlen=200
 " Use <F11> to toggle between 'paste' and 'nopaste'
 set pastetoggle=<F11>
 
-
-"------------------------------------------------------------
-" Indentation options {{{1
-"
-" Indentation settings according to personal preference.
-
-" Indentation settings for using 2 spaces instead of tabs.
-" Do not change 'tabstop' from its default value of 8 with this setup.
-set shiftwidth=4
-set softtabstop=4
-set expandtab
 
 "------------------------------------------------------------
 " Mappings {{{1
