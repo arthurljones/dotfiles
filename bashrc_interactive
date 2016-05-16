@@ -92,7 +92,10 @@ fi
 # Set the custom prompt. Needs to happen before iTerm2 shell integration or it won't stick
 PS1='~> '$prompt_user'@\['$ORANGE'\]\h\['$RESET'\]:\w\a$(___git_ps1 " (%s)")\n'${prompt}' '
 
-PROMPT_COMMAND="default_title"
+#If we're a remote terminal, then set the title of the terminal every time we run
+if [[ $(tty) =~ /dev/pts.* ]]; then
+    PROMPT_COMMAND="default_title"
+fi
 
 # iTerm2 shell integration
 if $dotfile_dir/isiterm2.sh; then
