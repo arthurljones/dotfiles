@@ -3,8 +3,10 @@
 script_path=$(realpath $BASH_SOURCE)
 dotfile_dir=${script_path%/*}
 
+PATH="$PATH:/sbin:/usr/sbin:/usr/local/sbin"
 [[ -d "$HOME/bin" ]] && PATH="$HOME/bin:$PATH"
 [[ -d "$HOME/tools" ]] && PATH="$HOME/tools:$PATH"
+export PATH
 
 function update_dotfiles {
   if [[ $EUID -ne 0 ]]; then
