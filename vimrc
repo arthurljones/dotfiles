@@ -17,7 +17,6 @@ au BufNewFile,BufRead vhosts.conf set filetype=apache
 au BufNewFile,BufRead /etc/php*/fpm/* set syntax=dosini
 au BufNewFile,BufRead /var/cache/bind* set syntax=dns
 
-
 "------------------------------------------------------------
 " Indentation options {{{1
 "
@@ -28,25 +27,18 @@ au BufNewFile,BufRead /var/cache/bind* set syntax=dns
 set shiftwidth=4
 set softtabstop=4
 set expandtab
-"
-" Ruby is an oddball in the family, use special spacing/rules
-if v:version >= 703
-  " Note: Relative number is quite slow with Ruby, so is cursorline
-  autocmd FileType ruby setlocal ts=2 sts=2 sw=2 norelativenumber nocursorline
-else
-  autocmd FileType ruby setlocal ts=2 sts=2 sw=2
-  " Toggle back and forth between relative and absolute
-  " line numbers with C-n
-  nnoremap <C-n> :set relativenumber!<cr>
 
-  " Switch to absolute numbers when losing focus
-  au FocusLost * :set number
-  au FocusGained * :set relativenumber
+" Toggle back and forth between relative and absolute
+" line numbers with C-n
+nnoremap <C-n> :set relativenumber!<cr>
 
-  " Switch to absolute line numbers in insert mode
-  autocmd InsertEnter * :set number
-  autocmd InsertLeave * :set relativenumber
-endif
+" Switch to absolute numbers when losing focus
+au FocusLost * :set number
+au FocusGained * :set relativenumber
+
+" Switch to absolute line numbers in insert mode
+autocmd InsertEnter * :set number
+autocmd InsertLeave * :set relativenumber
 
 " Use modelines in files
 set modeline
