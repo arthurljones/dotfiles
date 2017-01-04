@@ -34,6 +34,7 @@ for dotfile in \
     fonts  \
     xorg/xinitrc \
     xorg/xsession \
+    gemrc \
     ; do
     src="$HOME/.$(basename $dotfile)"
     dst="$dotfile_dir/$dotfile"
