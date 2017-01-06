@@ -8,11 +8,13 @@ source "$dotfile_dir/git-prompt.sh"
 source "$dotfile_dir/ssh_host_autocomplete.sh"
 
 function title {
-  echo -ne "\033];$*\007"
+    if ! { [ "$TERM" = "screen" ] && [ -n "$TMUX" ]; } then
+        echo -ne "\033];$*\007"
+    fi
 }
 
 function default_title {
-  title "$USER@$HOSTNAME"
+    title "$USER@$HOSTNAME"
 }
 
 alias df="df -h"
@@ -27,24 +29,24 @@ fi
 
 #Colors using tput (so the vars contain the actual control characters)
 if [[ $(tput colors) -ge 256 ]] 2>/dev/null; then
-  MAGENTA=$(tput setaf 9)
-  ORANGE=$(tput setaf 172)
-  GREEN=$(tput setaf 190)
-  PURPLE=$(tput setaf 141)
-  WHITE=$(tput setaf 256)
+    MAGENTA=$(tput setaf 9)
+    ORANGE=$(tput setaf 172)
+    GREEN=$(tput setaf 190)
+    PURPLE=$(tput setaf 141)
+    WHITE=$(tput setaf 256)
 else
-  MAGENTA=$(tput setaf 5)
-  ORANGE=$(tput setaf 4)
-  GREEN=$(tput setaf 2)
-  PURPLE=$(tput setaf 1)
-  WHITE=$(tput setaf 7)
+    MAGENTA=$(tput setaf 5)
+    ORANGE=$(tput setaf 4)
+    GREEN=$(tput setaf 2)
+    PURPLE=$(tput setaf 1)
+    WHITE=$(tput setaf 7)
 fi
 RED=$(tput setaf 1)
 BOLD=$(tput bold)
 RESET=$(tput sgr0)
 
 if [[ $EUID -eq 0 ]]; then
-  echo -e "$RED!!! ROOT SHELL !!!$RESET"
+    echo -e "$RED!!! ROOT SHELL !!!$RESET"
 fi
 
 #Debian-specific commands
@@ -89,11 +91,11 @@ export GIT_PS1_SHOWDIRTYSTATE="yes"
 
 # root gets a different username and prompt
 if [[ $EUID -eq 0 ]]; then
-  prompt_user=$RED"ROOT"$RESET
-  prompt="###"
+    prompt_user=$RED"ROOT"$RESET
+    prompt="###"
 else
-  prompt_user=$USER
-  prompt='\$'
+    prompt_user=$USER
+    prompt='\$'
 fi
 
 # Set the custom prompt. Needs to happen before iTerm2 shell integration or it won't stick
@@ -105,8 +107,11 @@ if [[ $(tty) =~ /dev/pts.* ]]; then
 fi
 
 # iTerm2 shell integration
-if $dotfile_dir/isiterm2.sh; then
-  source "$dotfile_dir/iterm2_shell_integration.`basename $SHELL`"
+# Don't do iTerm integration from inside a tmux session
+if ! { [ "$TERM" = "screen" ] && [ -n "$TMUX" ]; } then
+    if $dotfile_dir/isiterm2.sh; then
+        source "$dotfile_dir/iterm2_shell_integration.`basename $SHELL`"
+    fi
 fi
 
 # don't put duplicate lines or lines starting with space in the history.
