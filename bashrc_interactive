@@ -66,6 +66,13 @@ if grep -qs "Debian" /etc/issue || grep -qs "Raspbian" /etc/issue; then
     fi
 fi
 
+#OSX-specific commands
+if [[ $OSTYPE == "darwin"* ]]; then
+    if [ -f $(brew --prefix)/etc/bash_completion ]; then
+        . $(brew --prefix)/etc/bash_completion
+    fi
+fi
+
 #Set colors for various filetypes
 eval `dircolors -b $dotfile_dir/dircolors.ansi-dark`
 
