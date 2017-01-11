@@ -39,6 +39,11 @@ for dotfile in \
     src="$HOME/.$(basename $dotfile)"
     dst="$dotfile_dir/$dotfile"
 
+    if [[ "$OSTYPE" == "darwin"* && $dotfile == "xorg"* ]]; then
+        echo "Skipping $dotfile on OSX"
+        continue
+    fi
+
     if [[ -h "$src" ]] && [[ "$dst" == $(readlink "$src") ]]; then
         echo "Link $src is already up to date"
         continue
