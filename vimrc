@@ -28,6 +28,10 @@ set shiftwidth=4
 set softtabstop=4
 set expandtab
 
+" Use 2-space tabs for ruby
+autocmd FileType ruby setlocal shiftwidth=2 tabstop=2
+autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
+
 " Toggle back and forth between relative and absolute
 " line numbers with C-n
 nnoremap <C-n> :set relativenumber!<cr>
