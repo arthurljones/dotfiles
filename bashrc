@@ -6,9 +6,10 @@ dotfile_dir=${script_path%/*}
 PATH="$PATH:/sbin:/usr/sbin:/usr/local/sbin"
 [[ -d "$HOME/bin" ]] && PATH="$HOME/bin:$PATH"
 [[ -d "$HOME/tools" ]] && PATH="$HOME/tools:$PATH"
+[[ -d $HOME/Qt5.5.1/5.5/clang_64/bin ]] && PATH="$HOME/Qt5.5.1/5.5/clang_64/bin:$PATH"
 osx_gnubin="/usr/local/opt/coreutils/libexec/gnubin"
 [[ -d "$osx_gnubin" ]] && PATH="$osx_gnubin:$PATH"
-[[ -d ~/.npm-global ]] && PATH="~/.npm-global/bin:$PATH"
+[[ -d $HOME/.npm-global ]] && PATH="$HOME/.npm-global/bin:$PATH"
 export PATH
 
 function update_dotfiles {
