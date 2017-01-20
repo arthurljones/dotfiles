@@ -3,6 +3,12 @@ execute pathogen#infect()
 colorscheme obsidian "railscasts
 set number
 
+" Map wacky osx keycodes
+map [A <up>
+map [B <down>
+map [C <right>
+map [D <left>
+
 " Use tab and shift-tab to indent and deindent
 vmap <Tab> >
 vmap <S-Tab> <
@@ -10,6 +16,20 @@ vmap <S-Tab> <
 " Don't deselect the selection upon indent/deintent
 vnoremap < <gv
 vnoremap > >gv
+
+" Shortcuts for FuzzyFinder
+nmap ,f :FufFileWithCurrentBufferDir<CR>
+nmap ,b :FufBuffer<CR>
+nmap ,t :FufTaggedFile<CR>
+
+" Shortcuts for NERDTree
+nmap ,T :NERDTreeToggle<CR>
+
+" Tab settings and shortcuts
+nnoremap <C-Left> :tabprevious<CR>
+nnoremap <C-Right> :tabnext<CR>
+nnoremap <silent> <A-Left> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
+nnoremap <silent> <A-Right> :execute 'silent! tabmove ' . (tabpagenr()+1)<CR>
 
 au BufNewFile,BufRead gitconfig set filetype=gitconfig
 au BufNewFile,BufRead vimrc set filetype=vim
@@ -69,6 +89,10 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+
+" More natural split directions
+set splitbelow
+set splitright
 
 "------------------------------------------------------------
 " Features {{{1
