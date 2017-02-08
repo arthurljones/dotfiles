@@ -178,3 +178,4 @@
 	human = name-rev --name-only --refs=refs/heads/*
 	serve = !git daemon --reuseaddr --verbose  --base-path=. --export-all ./.git
 	snapshot = !git stash save "snapshot: $(date)" && git stash apply "stash@{0}"
+	deletemerged = !git branch --merged | egrep -v \"(^\\*|master|dev|beta)\" | xargs git branch -d
