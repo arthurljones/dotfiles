@@ -12,6 +12,10 @@ osx_gnubin="/usr/local/opt/coreutils/libexec/gnubin"
 [[ -d $HOME/.npm-global ]] && PATH="$HOME/.npm-global/bin:$PATH"
 export PATH
 
+# NVM
+export NVM_DIR="$HOME/.nvm"
+. "/usr/local/opt/nvm/nvm.sh"
+
 function update_dotfiles {
   if [[ $EUID -ne 0 ]]; then
     echo "Updating dotfiles..."
