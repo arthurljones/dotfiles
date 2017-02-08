@@ -22,6 +22,10 @@ nmap ,f :FufFileWithCurrentBufferDir<CR>
 nmap ,b :FufBuffer<CR>
 nmap ,t :FufTaggedFile<CR>
 
+" Shortcuts for fugitive
+nmap ,gs :Gstatus<CR>
+nmap ,gb :Gblame<CR>
+
 " Shortcuts for NERDTree
 nmap ,T :NERDTreeToggle<CR>
 
@@ -48,9 +52,10 @@ set shiftwidth=4
 set softtabstop=4
 set expandtab
 
-" Use 2-space tabs for ruby
+" Use 2-space tabs for web stuff (rwgps style)
 autocmd FileType ruby setlocal shiftwidth=2 tabstop=2
 autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
+autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
 
 " Toggle back and forth between relative and absolute
 " line numbers with C-n
