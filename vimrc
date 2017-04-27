@@ -41,6 +41,12 @@ au BufNewFile,BufRead vhosts.conf set filetype=apache
 au BufNewFile,BufRead /etc/php*/fpm/* set syntax=dosini
 au BufNewFile,BufRead /var/cache/bind* set syntax=dns
 
+" Automatically strip trailing whitespace
+autocmd FileType rb,js,css,sass,haml,yml,yaml autocmd BufWritePre <buffer> %s/\s\+$//e
+
+" Disable shortcut for Ex mode
+nnoremap Q <nop>
+
 "------------------------------------------------------------
 " Indentation options {{{1
 "
