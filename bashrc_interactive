@@ -20,6 +20,7 @@ function default_title {
 alias df="df -h"
 alias dfi="df -ih"
 alias sshl="ssh -L 8080:localhost:8080"
+alias :e="vim"
 
 # If there's an ssh-agent command but it hasn't been run yet, run it
 # and evaluate its results to set the appropriate env vars
