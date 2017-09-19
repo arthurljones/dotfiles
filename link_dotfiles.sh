@@ -35,6 +35,7 @@ for dotfile in \
     xorg/xinitrc \
     xorg/xsession \
     gemrc \
+    iterm2 \
     ; do
     src="$HOME/.$(basename $dotfile)"
     dst="$dotfile_dir/$dotfile"

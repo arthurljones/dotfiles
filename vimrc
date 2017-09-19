@@ -35,11 +35,14 @@ nnoremap <C-Right> :tabnext<CR>
 nnoremap <silent> <A-Left> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
 nnoremap <silent> <A-Right> :execute 'silent! tabmove ' . (tabpagenr()+1)<CR>
 
-au BufNewFile,BufRead gitconfig set filetype=gitconfig
-au BufNewFile,BufRead vimrc set filetype=vim
-au BufNewFile,BufRead vhosts.conf set filetype=apache
-au BufNewFile,BufRead /etc/php*/fpm/* set syntax=dosini
-au BufNewFile,BufRead /var/cache/bind* set syntax=dns
+augroup filetypedetect
+    au BufNewFile,BufRead gitconfig set filetype=gitconfig
+    au BufNewFile,BufRead vimrc set filetype=vim
+    au BufNewFile,BufRead vhosts.conf set filetype=apache
+    au BufNewFile,BufRead /etc/php*/fpm/* set syntax=dosini
+    au BufNewFile,BufRead /var/cache/bind* set syntax=dns
+    au BufNewFile,BufRead Capfile set syntax=ruby
+augroup END
 
 " Automatically strip trailing whitespace
 autocmd FileType rb,js,css,sass,haml,yml,yaml autocmd BufWritePre <buffer> %s/\s\+$//e

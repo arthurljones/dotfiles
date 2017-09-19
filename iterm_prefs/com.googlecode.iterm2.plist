@@ -347,20 +347,26 @@
 	</data>
 	<key>NSTableView Supports v2 KeyBingingTable</key>
 	<true/>
+	<key>NSWindow Frame SUUpdateAlert</key>
+	<string>2369 956 620 392 1440 188 2560 1417 </string>
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>269 207 599 388 0 0 1680 1027 </string>
 	<key>NSWindow Frame SharedPreferences</key>
 	<string>2039 336 937 465 1440 188 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>2588 272 1341 1319 1440 188 2560 1417 </string>
+	<string>2255 546 1628 1047 1440 188 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>1472 864 1285 707 1440 188 2560 1417 </string>
+	<string>1784 217 2132 996 1440 188 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
-	<string>2501 682 1285 707 1440 188 2560 1417 </string>
+	<string>52 70 1285 707 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
-	<string>1766 240 1446 962 1440 188 2560 1417 </string>
+	<string>2633 835 1285 707 1440 188 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 4</key>
-	<string>2183 774 1285 707 1440 188 2560 1417 </string>
+	<string>1452 271 2083 1251 1440 188 2560 1417 </string>
+	<key>NSWindow Frame iTerm Window 5</key>
+	<string>41 78 1285 707 0 0 1440 877 </string>
+	<key>NSWindow Frame iTerm Window 6</key>
+	<string>2014 898 1285 707 1440 188 2560 1417 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -969,6 +975,8 @@
 	<false/>
 	<key>NoSyncTimeOfFirstLaunchOfVersionWithTip</key>
 	<real>505180287.95858198</real>
+	<key>PasteTabToStringTabStopSize</key>
+	<integer>4</integer>
 	<key>PointerActions</key>
 	<dict>
 		<key>Button,1,1,,</key>
@@ -1013,8 +1021,10 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2017-02-06T23:21:19Z</date>
+	<date>2017-09-19T12:37:24Z</date>
 	<key>SUSendProfileInfo</key>
+	<false/>
+	<key>ShowFullScreenTabBar</key>
 	<false/>
 	<key>WordCharacters</key>
 	<string>/-+\~_.</string>
@@ -1023,6 +1033,6 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.0.13</string>
+	<string>3.0.15</string>
 </dict>
 </plist>

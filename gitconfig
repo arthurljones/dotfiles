@@ -6,7 +6,7 @@
 	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 	#excludesfile = ~/.gitignore
 [push]
-	default = matching
+	default = simple
 [color]
 	ui = auto
 [color "branch"]

@@ -10,6 +10,7 @@ PATH="$PATH:/sbin:/usr/sbin:/usr/local/sbin"
 osx_gnubin="/usr/local/opt/coreutils/libexec/gnubin"
 [[ -d "$osx_gnubin" ]] && PATH="$osx_gnubin:$PATH"
 [[ -d $HOME/.npm-global ]] && PATH="$HOME/.npm-global/bin:$PATH"
+[[ -d $HOME/Library/Python/2.7/bin ]] && PATH=$PATH:$HOME/Library/Python/2.7/bin
 export PATH
 
 # NVM
