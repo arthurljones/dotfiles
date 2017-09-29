@@ -35,6 +35,7 @@ nnoremap <C-Right> :tabnext<CR>
 nnoremap <silent> <A-Left> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
 nnoremap <silent> <A-Right> :execute 'silent! tabmove ' . (tabpagenr()+1)<CR>
 
+" Filetypes
 augroup filetypedetect
     au BufNewFile,BufRead gitconfig set filetype=gitconfig
     au BufNewFile,BufRead vimrc set filetype=vim
@@ -43,6 +44,9 @@ augroup filetypedetect
     au BufNewFile,BufRead /var/cache/bind* set syntax=dns
     au BufNewFile,BufRead Capfile set syntax=ruby
 augroup END
+
+" Use vim-jsx on all javascript files
+let g:jsx_ext_required = 0
 
 " Automatically strip trailing whitespace
 autocmd FileType rb,js,css,sass,haml,yml,yaml autocmd BufWritePre <buffer> %s/\s\+$//e
