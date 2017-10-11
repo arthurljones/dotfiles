@@ -48,8 +48,12 @@ augroup END
 " Use vim-jsx on all javascript files
 let g:jsx_ext_required = 0
 
+" Auto-lint all js files with standard js
+autocmd bufwritepost *.js silent !standard --fix %
+set autoread
+
 " Automatically strip trailing whitespace
-autocmd FileType rb,js,css,sass,haml,yml,yaml autocmd BufWritePre <buffer> %s/\s\+$//e
+autocmd FileType rb,js,jsx,css,sass,haml,yml,yaml autocmd BufWritePre <buffer> %s/\s\+$//e
 
 " Disable shortcut for Ex mode
 nnoremap Q <nop>
