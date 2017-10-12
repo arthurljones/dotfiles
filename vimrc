@@ -49,7 +49,7 @@ augroup END
 let g:jsx_ext_required = 0
 
 " Auto-lint all js files with standard js
-autocmd bufwritepost *.js silent !standard --fix %
+autocmd bufwritepost *.js,*.jsx silent !standard --fix %
 set autoread
 
 " Automatically strip trailing whitespace
