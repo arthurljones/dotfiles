@@ -8,6 +8,8 @@
 	<integer>0</integer>
 	<key>AppleSmoothFixedFontsSizeThreshold</key>
 	<integer>1</integer>
+	<key>AppleWindowTabbingMode</key>
+	<string>manual</string>
 	<key>Custom Color Presets</key>
 	<dict>
 		<key>Arthur</key>
@@ -349,26 +351,28 @@
 	</data>
 	<key>NSTableView Supports v2 KeyBingingTable</key>
 	<true/>
+	<key>NSWindow Frame SUStatusFrame</key>
+	<string>2479 1154 400 129 1440 188 2560 1417 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
-	<string>410 363 620 392 0 0 1440 877 </string>
+	<string>2369 956 620 392 1440 188 2560 1417 </string>
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>269 207 599 388 0 0 1680 1027 </string>
 	<key>NSWindow Frame SharedPreferences</key>
 	<string>2039 362 1018 447 1440 188 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 170 1285 707 0 0 1440 877 </string>
+	<string>2024 597 1285 707 1440 188 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>1784 217 2132 996 1440 188 2560 1417 </string>
+	<string>2419 885 1467 707 1440 188 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
-	<string>52 70 1285 707 0 0 1440 877 </string>
+	<string>1456 200 2020 707 1440 188 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
-	<string>0 312 1012 265 0 0 1440 877 </string>
+	<string>1785 635 1285 707 1440 188 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 4</key>
-	<string>1452 271 2083 1251 1440 188 2560 1417 </string>
+	<string>123 170 1285 707 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 5</key>
-	<string>41 78 1285 707 0 0 1440 877 </string>
+	<string>1440 597 1285 707 1440 188 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 6</key>
-	<string>0 12 1005 299 0 0 1440 877 </string>
+	<string>2424 446 1082 707 1440 188 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 7</key>
 	<string>607 612 739 265 0 0 1440 877 </string>
 	<key>New Bookmarks</key>
@@ -1027,7 +1031,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2017-09-22T16:25:32Z</date>
+	<date>2017-10-24T17:11:37Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>ShowFullScreenTabBar</key>
@@ -1039,6 +1043,6 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.1.0</string>
+	<string>3.1.3</string>
 </dict>
 </plist>
