@@ -22,5 +22,5 @@ if [ -z "$mouse_id" ]; then
     exit 1
 fi
 
-# Map button 9 (top side button) to button 2 (middle button)
-xinput set-button-map $mouse_id 1 2 3 4 5 6 7 8 2 10 11 12 13 14 15 16
+# Map buttons 8 and 9 (top side buttons) to button 2 (middle button)
+xinput set-button-map $mouse_id 1 2 3 4 5 6 7 2 2 10 11 12 13 14 15 16
