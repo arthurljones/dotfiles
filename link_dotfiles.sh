@@ -33,12 +33,12 @@ link_dotfile() {
 
     if [[ "$OSTYPE" == "darwin"* && $dotfile == "xorg"* ]]; then
         echo "Skipping $dotfile on OSX"
-        continue
+        return
     fi
 
     if [[ -h "$dst" ]] && [[ "$src" == $(readlink "$dst") ]]; then
         echo "Link $dst is already up to date"
-        continue
+        return
     elif [[ -e "$dst" ]]; then
         backup="$dst.old" 
         if [[ -e "$backup" ]] && ! [[ -n "$force" ]]; then
@@ -54,12 +54,11 @@ link_dotfile() {
     else
         echo "Linking $dst -> $src"
         dst_dir=$(dirname $dst)
-        mkdir -p $dst_dir
+        [[ -z $dst_dir ]] && mkdir -p $dst_dir
         ln -s $src $dst
     fi
 }
 
-mkdir -p $awesome_config_dir
 link_dotfile xorg/awesome/rc.lua $HOME/.config/awesome/rc.lua 
 
 for dotfile in \
