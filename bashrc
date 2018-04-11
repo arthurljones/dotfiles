@@ -13,9 +13,14 @@ osx_gnubin="/usr/local/opt/coreutils/libexec/gnubin"
 [[ -d $HOME/Library/Python/2.7/bin ]] && PATH=$PATH:$HOME/Library/Python/2.7/bin
 export PATH
 
-# NVM
+# Node Version Manager (nvm)
 export NVM_DIR="$HOME/.nvm"
 [[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"  # This loads nvm
+[[ -s "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Ruby Version Manager (rvm)
+export rvmsudo_secure_path=0
+export PATH="$HOME/.rvm/bin:$PATH" # Add RVM to PATH for scripting
 [[ -s $HOME/.rvm/scripts/rvm ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 function update_dotfiles {
@@ -39,6 +44,3 @@ if [[ $- == *i* ]]; then
   source "$dotfile_dir/bashrc_interactive"
 fi
 
-#Ruby Version Manager
-export rvmsudo_secure_path=0
-export PATH="$HOME/.rvm/bin:$PATH" # Add RVM to PATH for scripting
