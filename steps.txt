@@ -1,0 +1,31 @@
+- [x] Add PPAs `sudo apt-add-repository -y`
+    ppa:rael-gc/scudcloud ppa:alessandro-strada/ppa
+    ppa:klaus-vormweg/awesome
+- [x] Add apt repositories
+    wget -qO - https://wavebox.io/dl/client/repo/archive.key | sudo apt-key add -
+    echo "deb https://wavebox.io/dl/client/repo/ x86_64/" | sudo tee --append /etc/apt/sources.list.d/repo.list
+    wget -qO - http://linux-packages.resilio.com/resilio-sync/key.asc | sudo apt-key add -
+    echo "deb http://linux-packages.resilio.com/resilio-sync/deb resilio-sync non-free" | sudo tee /etc/apt/sources.list.d/resilio-sync.list
+- [x] Update apt: `sudo apt update`
+- [x] Install packages:
+    sudo apt install git vim scudcloud pidgin chromium-browser chromium-codecs-ffmpeg-extra silversearcher-ag libreoffice gimp inkscape imagemagick ghostscript google-drive-ocamlfuse ttf-mscorefonts-installer wavebox fonts-inconsolata screen ssh apt-transport-https ca-certificates curl software-properties-common xclip s3cmd resilio-sync xfce4-pulseaudio-plugin xfce4-sensors-plugin xfce4-cpugraph-plugin xfce4-cpufreq-plugin awesome
+    - [x] checkout and link dotfiles
+- [x] setup pidgin
+- [x] setup wavebox
+- [x] setup chromium
+- [x] setup google drive:
+    sudo groupadd fuse
+    sudo usermod -a -G fuse aj
+    google-drive-ocamlfuse
+    mkdir ~/googledrive
+    google-drive-ocamlfuse ~googledrive
+    mount
+- [x] generate ssh key
+- [x] add ssh key to github
+- [x] add ssh key to server configs
+- [x] install flameshot
+- [x] add items to xfce autostart: xsession, flameshot_monitor.sh, wavebox
+- [x] setup rvm
+- [x] setup nvm
+- [x] add pulseaudio plugin to xfce dock
+- [x] set awesome to be default window manager
