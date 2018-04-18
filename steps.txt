@@ -8,7 +8,7 @@
     echo "deb http://linux-packages.resilio.com/resilio-sync/deb resilio-sync non-free" | sudo tee /etc/apt/sources.list.d/resilio-sync.list
 - [x] Update apt: `sudo apt update`
 - [x] Install packages:
-    sudo apt install git vim scudcloud pidgin chromium-browser chromium-codecs-ffmpeg-extra silversearcher-ag libreoffice gimp inkscape imagemagick ghostscript google-drive-ocamlfuse ttf-mscorefonts-installer wavebox fonts-inconsolata screen ssh apt-transport-https ca-certificates curl software-properties-common xclip s3cmd resilio-sync xfce4-pulseaudio-plugin xfce4-sensors-plugin xfce4-cpugraph-plugin xfce4-cpufreq-plugin awesome
+    sudo apt install git vim vim-gtk scudcloud pidgin chromium-browser chromium-codecs-ffmpeg-extra silversearcher-ag libreoffice gimp inkscape imagemagick ghostscript google-drive-ocamlfuse ttf-mscorefonts-installer wavebox fonts-inconsolata screen ssh apt-transport-https ca-certificates curl software-properties-common xclip s3cmd resilio-sync xfce4-pulseaudio-plugin xfce4-sensors-plugin xfce4-cpugraph-plugin xfce4-cpufreq-plugin awesome
     - [x] checkout and link dotfiles
 - [x] setup pidgin
 - [x] setup wavebox
