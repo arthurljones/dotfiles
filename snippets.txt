@@ -1,0 +1,2 @@
+# Compute and sort by comment percentage per file (useful for finding commented-out files)
+for file in `find . -name "*_spec.rb"`; do echo "$(grep '^[ \t]*#' $file | wc -l) $(wc -l $file) $file" | awk '{ comments = int($1 * 100 / $2); if (comments > 0) { print comments " " $3 }}'; done | sort -h -k 1 -t' '

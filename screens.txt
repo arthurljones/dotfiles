@@ -1,0 +1,7 @@
+screens:
+1: 3 terminals (/home/aj/workspace/ridewithgps)
+2: chromium-browser, wavebox, xed
+3: 2 terminals (/home/aj/workspace/ridewithgps), chromium-browser
+4: 2 terminals
+5: gimp, terminal
+9: terminal running `./dotfiles/xorg/flameshot_monitor.sh`

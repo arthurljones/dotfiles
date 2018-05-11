@@ -3,15 +3,26 @@
 script_path=$(realpath $BASH_SOURCE)
 dotfile_dir=${script_path%/*}
 
-PATH="$PATH:/sbin:/usr/sbin:/usr/local/sbin"
-[[ -d "$HOME/bin" ]] && PATH="$HOME/bin:$PATH"
-[[ -d "$HOME/tools" ]] && PATH="$HOME/tools:$PATH"
-[[ -d $HOME/Qt5.5.1/5.5/clang_64/bin ]] && PATH="$HOME/Qt5.5.1/5.5/clang_64/bin:$PATH"
-osx_gnubin="/usr/local/opt/coreutils/libexec/gnubin"
-[[ -d "$osx_gnubin" ]] && PATH="$osx_gnubin:$PATH"
-[[ -d $HOME/.npm-global ]] && PATH="$HOME/.npm-global/bin:$PATH"
-[[ -d $HOME/Library/Python/2.7/bin ]] && PATH=$PATH:$HOME/Library/Python/2.7/bin
-export PATH
+append_to_path() {
+    [[ -d $1 ]] && PATH="$PATH:$1"
+    export PATH
+}
+
+prepend_to_path() {
+    [[ -d $1 ]] && PATH="$1:$PATH"
+    export PATH
+}
+
+append_to_path "/sbin"
+append_to_path "/usr/sbin"
+append_to_path "/usr/local/sbin"
+prepend_to_path "$HOME/bin"
+prepend_to_path "$HOME/tools"
+prepend_to_path "$HOME/Qt5.5.1/5.5/clang_64/bin"
+prepend_to_path "/usr/local/opt/coreutils/libexec/gnubin"
+prepend_to_path "$HOME/.npm-global/bin"
+prepend_to_path "$HOME/Library/Python/2.7/bin"
+prepend_to_path "/opt/wavebox"
 
 # Node Version Manager (nvm)
 export NVM_DIR="$HOME/.nvm"
