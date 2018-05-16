@@ -61,6 +61,12 @@ let g:ale_sign_column_always = 1
 " autocmd bufwritepost *.js silent !standard --fix %
 " set autoread
 
+" Keep ALE gutter open to prevent horizontal popping
+let g:ale_sign_column_always = 1
+
+" Enable ALE integration in airline
+let g:airline#extensions#ale#enabled = 1
+
 " Automatically strip trailing whitespace
 autocmd FileType rb,js,jsx,css,sass,haml,yml,yaml autocmd BufWritePre <buffer> %s/\s\+$//e
 

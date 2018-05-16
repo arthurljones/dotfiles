@@ -24,6 +24,43 @@ if [ -z $dotfile_dir ]; then
 fi
 
 echo "Linking dotfiles..."
+# Takes a path to a file relative to $dotfile_dir
+link_dotfile() {
+    local dotfile=$1
+    local default_dst=$HOME/.$(basename $dotfile)
+    local dst=${2:-$default_dst}
+    local src="$dotfile_dir/$dotfile"
+
+    if [[ "$OSTYPE" == "darwin"* && $dotfile == "xorg"* ]]; then
+        echo "Skipping $dotfile on OSX"
+        return
+    fi
+
+    if [[ -h "$dst" ]] && [[ "$src" == $(readlink "$dst") ]]; then
+        echo "Link $dst is already up to date"
+        return
+    elif [[ -e "$dst" ]]; then
+        backup="$dst.old" 
+        if [[ -e "$backup" ]] && ! [[ -n "$force" ]]; then
+            echo "Backup already exists at $backupc. Use --force to overwrite it"
+        else
+            echo "Backing up existing $dst to $backup"
+            mv -f "$dst" "$backup"
+        fi 
+    fi
+
+    if [[ -e "$dst" ]]; then
+        echo "Not linking $dst because it already exists"
+    else
+        echo "Linking $dst -> $src"
+        dst_dir=$(dirname $dst)
+        [[ -z $dst_dir ]] && mkdir -p $dst_dir
+        ln -s $src $dst
+    fi
+}
+
+link_dotfile xorg/awesome/rc.lua $HOME/.config/awesome/rc.lua 
+
 for dotfile in \
     bashrc \
     bash_profile \
@@ -37,31 +74,5 @@ for dotfile in \
     gemrc \
     iterm2 \
     ; do
-    src="$HOME/.$(basename $dotfile)"
-    dst="$dotfile_dir/$dotfile"
-
-    if [[ "$OSTYPE" == "darwin"* && $dotfile == "xorg"* ]]; then
-        echo "Skipping $dotfile on OSX"
-        continue
-    fi
-
-    if [[ -h "$src" ]] && [[ "$dst" == $(readlink "$src") ]]; then
-        echo "Link $src is already up to date"
-        continue
-    elif [[ -e "$src" ]]; then
-        backup="$src.old" 
-        if [[ -e "$backup" ]] && ! [[ -n "$force" ]]; then
-            echo "Backup already exists at $backupc. Use --force to overwrite it"
-        else
-            echo "Backing up existing $src to $backup"
-            mv -f "$src" "$backup"
-        fi 
-    fi
-
-    if [[ -e "$src" ]]; then
-        echo "Not linking $src because it already exists"
-    else
-        echo "Linking $src -> $dst"
-        ln -s $dst $src
-    fi
+    link_dotfile $dotfile
 done

@@ -1,10 +1,10 @@
+[submodule "vim/bundle/vim-over"]
+	path = vim/bundle/vim-over
+	url = https://github.com/osyo-manga/vim-over.git
+
 [submodule "vim/bundle/ale"]
 	path = vim/bundle/ale
 	url = https://github.com/w0rp/ale.git
-
-[submodule "vim/bundle/todo.txt-vim"]
-	path = vim/bundle/todo.txt-vim
-	url = https://github.com/freitass/todo.txt-vim.git
 
 [submodule "vim/bundle/vim-airline"]
 	path = vim/bundle/vim-airline
@@ -57,5 +57,3 @@
 [submodule "vim/bundle/vim-surround"]
         path = vim/bundle/vim-surround
         url = https://github.com/tpope/vim-surround.git
-
-
