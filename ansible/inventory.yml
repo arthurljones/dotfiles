@@ -1,0 +1,8 @@
+all:
+  hosts:
+    dev_test:
+      ansible_host: 192.168.56.101
+  children:
+    dev:
+      hosts:
+        dev_test:

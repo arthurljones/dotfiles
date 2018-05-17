@@ -1,0 +1,116 @@
+---
+# Requirements:
+# ansible-galaxy install -p ./roles/ moviedo.nvm rvm_io.ruby
+
+- hosts: dev
+  remote_user: aj
+  become: yes
+  tasks:
+    - name: Add ppa repositories
+      apt_repository:
+        repo: '{{ item }}'
+        codename: xenial
+        update_cache: no
+        state: present
+      with_items:
+        - 'ppa:klaus-vormweg/awesome' # Unofficial
+        - 'ppa:ansible/ansible'
+        - 'ppa:alessandro-strada/ppa' # For google-drive-ocamlfuse
+        - 'ppa:atareao/flameshot' # Unofficial
+
+    - name: Add repo keys
+      apt_key:
+        url: '{{ item }}'
+        state: present
+      with_items:
+        - 'https://wavebox.io/dl/client/repo/archive.key'
+        - 'https://linux-packages.resilio.com/resilio-sync/key.asc'
+
+    - name: Add deb repositories
+      apt_repository:
+        update_cache: no
+        repo: '{{ item }}'
+        state: present
+      with_items:
+        - 'deb https://wavebox.io/dl/client/repo/ x86_64/'
+        - 'deb http://linux-packages.resilio.com/resilio-sync/deb resilio-sync non-free'
+
+    - name: Update repositories cache
+      apt:
+        update_cache: yes
+
+    - name: Install packages
+      apt:
+        name: "{{ item }}"
+      with_items:
+        - 'git'
+        - 'vim'
+        - 'vim-gtk'
+        - 'chromium-browser'
+        - 'chromium-codecs-ffmpeg-extra'
+        - 'silversearcher-ag'
+        - 'libreoffice'
+        - 'gimp'
+        - 'inkscape'
+        - 'imagemagick'
+        - 'ghostscript'
+        - 'google-drive-ocamlfuse'
+        - 'ttf-mscorefonts-installer'
+        - 'wavebox'
+        - 'flameshot'
+        - 'fonts-inconsolata'
+        - 'screen'
+        - 'ssh'
+        - 'apt-transport-https'
+        - 'ca-certificates'
+        - 'curl'
+        - 'software-properties-common'
+        - 'xclip'
+        - 's3cmd'
+        - 'resilio-sync'
+        - 'awesome'
+        - 'smartmontools'
+        - 'ansible'
+        - 'zfs-dkms'
+        - 'zfsutils-linux'
+        - 'zfs-initramfs'
+
+    - name: Add fuse group
+      group:
+        name: fuse
+        state: present
+
+    - name: Flesh out aj user
+      user:
+        name: aj
+        home: /home/aj
+        move_home: yes
+        shell: /bin/bash
+        groups: ['adm', 'fuse']
+        append: yes
+        generate_ssh_key: yes
+        ssh_key_bits: 4096
+        ssh_key_comment: aj@dev
+        ssh_key_type: rsa
+        ssh_key_file: .ssh/id_rsa
+        state: present
+
+    - name: Make the aj user sudoer with no password (for rvm)
+      lineinfile: "dest=/etc/sudoers state=present regexp='^aj' line='aj ALL=(ALL) NOPASSWD: ALL'"
+
+    - name: Install rvm
+      include_role:
+        name: rvm_io.ruby
+      vars:
+        rvm1_rubies:
+          - 'ruby-2.4.1'
+        rvm1_user: aj
+
+    - name: Install nvm
+      include_role:
+        name: moviedo.nvm
+      vars:
+        nvm_version: "v0.33.11"
+        nvm_node_version: "8.11.2"
+        nvm_user: aj
+

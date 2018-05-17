@@ -1,0 +1,10 @@
+- hosts: dev
+
+    - name: Clone dotfiles
+      git:
+        repo: 'https://github.com/arthurljones/dotfiles.git'
+        dest: /home/aj/dotfiles
+        version: master
+
+    - name: Link dotfiles
+      command: /home/aj/dotfiles/link_dotfiles.sh

@@ -4,4 +4,4 @@ screens:
 3: 2 terminals (/home/aj/workspace/ridewithgps), chromium-browser
 4: 2 terminals
 5: gimp, terminal
-9: terminal running `./dotfiles/xorg/flameshot_monitor.sh`
+9: terminal running `./dotfiles/xorg/flameshot_monitor.sh` 
