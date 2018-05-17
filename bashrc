@@ -39,6 +39,7 @@ function update_dotfiles {
     echo "Updating dotfiles..."
     pushd $dotfile_dir > /dev/null
     git pull origin master
+    git submodule update --init --recursive
     ./link_dotfiles.sh
     popd > /dev/null
     source $dotfile_dir/bashrc
