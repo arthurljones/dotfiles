@@ -1,5 +1,11 @@
-- hosts: dev
+---
 
+- hosts: dev
+  remote_user: aj
+  become: yes
+  any_errors_fatal: yes
+
+  tasks:
     - name: Clone dotfiles
       git:
         repo: 'https://github.com/arthurljones/dotfiles.git'
@@ -8,3 +14,16 @@
 
     - name: Link dotfiles
       command: /home/aj/dotfiles/link_dotfiles.sh
+
+    - name: Install rvm
+      become: yes
+      include_role:
+        name: rvm_io.ruby
+      vars:
+        rvm1_rubies:
+          - 'ruby-2.4.1'
+        rvm1_user: aj
+
+    # TODO: nvm
+    # TODO: awesomewm setup
+

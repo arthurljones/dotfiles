@@ -5,8 +5,79 @@
 - hosts: dev
   remote_user: aj
   become: yes
+  any_errors_fatal: yes
+  vars:
+    common_packages:
+      - 'git'
+      - 'vim'
+      - 'libreoffice'
+      - 'gimp'
+      - 'inkscape'
+      - 'ghostscript'
+      - 'google-drive-ocamlfuse'
+      - 'flameshot'
+      - 'screen'
+      - 'ca-certificates'
+      - 'curl'
+      - 'xclip'
+      - 's3cmd'
+      - 'resilio-sync'
+      - 'awesome'
+      - 'smartmontools'
+      - 'ansible'
+
+    debian_preload_packages:
+      - 'apt-transport-https'
+      - 'software-properties-common'
+
+    debian_packages:
+      - 'vim-gtk'
+      - 'chromium-browser'
+      - 'chromium-codecs-ffmpeg-extra'
+      - 'silversearcher-ag'
+      - 'imagemagick'
+      - 'ttf-mscorefonts-installer'
+      - 'wavebox'
+      - 'fonts-inconsolata'
+      - 'ssh'
+      - 'zfs-dkms'
+      - 'zfsutils-linux'
+      - 'linux-headers-generic'
+
+    fedora_preload_packages:
+      - 'python2-libselinux'
+      - 'python3-libselinux'
+
+    fedora_packages:
+      - 'vim-X11'
+      - 'chromium'
+      - 'the_silver_searcher'
+      - 'ImageMagick'
+      - 'Wavebox'
+      - 'levien-inconsolata-fonts'
+      - 'openssh-server'
+      - 'kernel-devel'
+      - 'xorg-x11-font-utils'
+      - 'fontconfig'
+      - 'wget'
+      - 'cabextract'
+      - 'https://downloads.sourceforge.net/project/mscorefonts2/rpms/msttcore-fonts-installer-2.6-1.noarch.rpm'
+
+    repo_key_urls:
+      - 'https://wavebox.io/dl/client/repo/archive.key'
+      - 'https://linux-packages.resilio.com/resilio-sync/key.asc'
+
   tasks:
-    - name: Add ppa repositories
+    # Ubuntu packages
+    - name: Install apt preload packages
+      when: ansible_os_family == "Debian"
+      apt:
+        name: '{{ item }}'
+        state: present
+      with_items: '{{ debian_preload_packages }}'
+
+    - name: Add apt ppa repositories
+      when: ansible_os_family == "Debian"
       apt_repository:
         repo: '{{ item }}'
         codename: xenial
@@ -18,15 +89,15 @@
         - 'ppa:alessandro-strada/ppa' # For google-drive-ocamlfuse
         - 'ppa:atareao/flameshot' # Unofficial
 
-    - name: Add repo keys
+    - name: Add apt repo keys
+      when: ansible_os_family == "Debian"
       apt_key:
         url: '{{ item }}'
         state: present
-      with_items:
-        - 'https://wavebox.io/dl/client/repo/archive.key'
-        - 'https://linux-packages.resilio.com/resilio-sync/key.asc'
+      with_items: '{{ repo_key_urls }}'
 
     - name: Add deb repositories
+      when: ansible_os_family == "Debian"
       apt_repository:
         update_cache: no
         repo: '{{ item }}'
@@ -35,46 +106,71 @@
         - 'deb https://wavebox.io/dl/client/repo/ x86_64/'
         - 'deb http://linux-packages.resilio.com/resilio-sync/deb resilio-sync non-free'
 
-    - name: Update repositories cache
+    - name: Update apt cache
+      when: ansible_os_family == "Debian"
       apt:
         update_cache: yes
 
-    - name: Install packages
+    - name: Install apt packages
+      when: ansible_os_family == "Debian"
       apt:
         name: "{{ item }}"
-      with_items:
-        - 'git'
-        - 'vim'
-        - 'vim-gtk'
-        - 'chromium-browser'
-        - 'chromium-codecs-ffmpeg-extra'
-        - 'silversearcher-ag'
-        - 'libreoffice'
-        - 'gimp'
-        - 'inkscape'
-        - 'imagemagick'
-        - 'ghostscript'
-        - 'google-drive-ocamlfuse'
-        - 'ttf-mscorefonts-installer'
-        - 'wavebox'
-        - 'flameshot'
-        - 'fonts-inconsolata'
-        - 'screen'
-        - 'ssh'
-        - 'apt-transport-https'
-        - 'ca-certificates'
-        - 'curl'
-        - 'software-properties-common'
-        - 'xclip'
-        - 's3cmd'
-        - 'resilio-sync'
-        - 'awesome'
-        - 'smartmontools'
-        - 'ansible'
-        - 'zfs-dkms'
-        - 'zfsutils-linux'
-        - 'zfs-initramfs'
+        state: present
+      with_items: "{{ common_packages }} + {{ debian_packages }}"
 
+    # Fedora packages
+    - name: Install selinux python bindings
+      when: ansible_os_family == "RedHat"
+      dnf:
+        name: "{{ item }}"
+        state: present
+      with_items: '{{ fedora_preload_packages }}'
+
+    - name: Add rpm keys
+      when: ansible_os_family == "RedHat"
+      rpm_key:
+        key: '{{ item }}'
+        state: present
+      with_items: '{{ repo_key_urls }}'
+
+    - name: Add dnf repos by url
+      when: ansible_os_family == "RedHat"
+      command: 'dnf config-manager --add-repo {{ item }}'
+      with_items:
+       - 'https://wavebox.io/dl/client/repo/yum/wavebox.repo'
+
+    - name: Add dfn repo by copr
+      when: ansible_os_family == "RedHat"
+      command: dnf copr enable -y sergiomb/google-drive-ocamlfuse
+
+    - name: Add dnf repos by file
+      when: ansible_os_family == "RedHat"
+      copy:
+        src: ./fedora/resilio-sync.repo
+        dest: /etc/yum.repos.d/resilio-sync.repo
+        mode: 0644
+
+    - name: Install dnf packages
+      when: ansible_os_family == "RedHat"
+      dnf:
+        name: "{{ item }}"
+        state: present
+      with_items: "{{ common_packages }} + {{ fedora_packages }}"
+
+    - name: Get rpm dist string
+      when: ansible_os_family == "RedHat"
+      args:
+        warn: no
+      command: rpm -E %dist
+      register: rpm_dist
+
+    - name: Install zfs rpm package
+      when: ansible_os_family == "RedHat"
+      dnf:
+        name: "http://download.zfsonlinux.org/fedora/zfs-release{{rpm_dist.stdout}}.noarch.rpm"
+        state: present
+
+    # Common
     - name: Add fuse group
       group:
         name: fuse
@@ -97,20 +193,3 @@
 
     - name: Make the aj user sudoer with no password (for rvm)
       lineinfile: "dest=/etc/sudoers state=present regexp='^aj' line='aj ALL=(ALL) NOPASSWD: ALL'"
-
-    - name: Install rvm
-      include_role:
-        name: rvm_io.ruby
-      vars:
-        rvm1_rubies:
-          - 'ruby-2.4.1'
-        rvm1_user: aj
-
-    - name: Install nvm
-      include_role:
-        name: moviedo.nvm
-      vars:
-        nvm_version: "v0.33.11"
-        nvm_node_version: "8.11.2"
-        nvm_user: aj
-
