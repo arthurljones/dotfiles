@@ -1,6 +1,4 @@
 ---
-# Requirements:
-# ansible-galaxy install -p ./roles/ moviedo.nvm rvm_io.ruby
 
 - hosts: dev
   remote_user: aj
@@ -176,20 +174,12 @@
         name: fuse
         state: present
 
-    - name: Flesh out aj user
-      user:
-        name: aj
-        home: /home/aj
-        move_home: yes
-        shell: /bin/bash
-        groups: ['adm', 'fuse']
-        append: yes
-        generate_ssh_key: yes
-        ssh_key_bits: 4096
-        ssh_key_comment: aj@dev
-        ssh_key_type: rsa
-        ssh_key_file: .ssh/id_rsa
-        state: present
+    - name: Use CLI login
+      command: systemctl set-default multi-user.target
 
-    - name: Make the aj user sudoer with no password (for rvm)
-      lineinfile: "dest=/etc/sudoers state=present regexp='^aj' line='aj ALL=(ALL) NOPASSWD: ALL'"
+    - name: Start sshd at boot
+      systemd:
+        name: sshd
+        state: started
+        enabled: yes
+

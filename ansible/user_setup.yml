@@ -2,10 +2,25 @@
 
 - hosts: dev
   remote_user: aj
-  become: yes
   any_errors_fatal: yes
 
   tasks:
+    - name: Flesh out aj user
+      become: yes
+      user:
+        name: aj
+        home: /home/aj
+        move_home: yes
+        shell: /bin/bash
+        groups: ['adm', 'fuse']
+        append: yes
+        generate_ssh_key: yes
+        ssh_key_bits: 4096
+        ssh_key_comment: aj@dev
+        ssh_key_type: rsa
+        ssh_key_file: .ssh/id_rsa
+        state: present
+
     - name: Clone dotfiles
       git:
         repo: 'https://github.com/arthurljones/dotfiles.git'
@@ -14,6 +29,8 @@
 
     - name: Link dotfiles
       command: /home/aj/dotfiles/link_dotfiles.sh
+      args:
+        chdir: /home/aj
 
     - name: Install rvm
       become: yes
