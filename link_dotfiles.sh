@@ -54,7 +54,7 @@ link_dotfile() {
     else
         echo "Linking $dst -> $src"
         dst_dir=$(dirname $dst)
-        [[ -z $dst_dir ]] && mkdir -p $dst_dir
+        mkdir -p $dst_dir
         ln -s $src $dst
     fi
 }

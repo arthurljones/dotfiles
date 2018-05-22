@@ -24,7 +24,7 @@ alias :e="vim"
 alias r="./ride.rb"
 
 # Fedora/CentOS vim is not compiled with X11 support, but vimx is. 
-if [ -e /usr/bin/vimx ]
+if [[ -e /usr/bin/vimx ]]; then
     alias vim='/usr/bin/vimx'
 fi
 
