@@ -2,8 +2,4 @@
 - [x] setup chromium
 - [ ] set dotfiles/xorg/xsession to autorun
 - [x] add ssh key to github
-- [ ] checkout/copy ridewithgps, rwgps-ui, server-configs
-- [ ] add ssh key to server configs
-- [ ] add items to xfce autostart: xsession, flameshot_monitor.sh, wavebox
-- [ ] add pulseaudio plugin to xfce dock
 - [x] set awesome to be default window manager

@@ -54,15 +54,17 @@ link_dotfile() {
     else
         echo "Linking $dst -> $src"
         dst_dir=$(dirname $dst)
-        mkdir -p $dst_dir
-        ln -s $src $dst
+        mkdir -p "$dst_dir"
+        ln -s "$src" "$dst"
     fi
 }
 
 for dotfile in $(find $dotfile_dir/config -type f); do
-    relative=${dotfile#"$dotfile_dir/config/"}
-    dst="$HOME/.config/$relative"
-    link_dotfile "$dotfile" "$dst"
+    # Strip off the path before the dotfile dir
+    src=${dotfile#"$dotfile_dir/"}
+    # Strip off config for the destination
+    dst="$HOME/.config/${src#"config/"}"
+    link_dotfile "$src" "$dst"
 done
 
 for dotfile in \
