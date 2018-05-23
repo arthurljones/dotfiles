@@ -4,7 +4,7 @@
   inactive_color_offset = 0.89
   scroll_tabbar = True
 [keybindings]
-  reset_clear = <Primary><Shift>k
+  reset_clear = <Primary><Shift>j
 [layouts]
   [[default]]
     [[[child1]]]

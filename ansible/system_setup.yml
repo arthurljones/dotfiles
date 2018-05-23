@@ -23,6 +23,7 @@
       - 'awesome'
       - 'smartmontools'
       - 'ansible'
+      - 'yarn'
 
     debian_preload_packages:
       - 'apt-transport-https'
@@ -60,6 +61,7 @@
       - 'wget'
       - 'cabextract'
       - 'https://downloads.sourceforge.net/project/mscorefonts2/rpms/msttcore-fonts-installer-2.6-1.noarch.rpm'
+      - 'docker-ce'
 
     repo_key_urls:
       - 'https://wavebox.io/dl/client/repo/archive.key'
@@ -136,8 +138,10 @@
       command: 'dnf config-manager --add-repo {{ item }}'
       with_items:
        - 'https://wavebox.io/dl/client/repo/yum/wavebox.repo'
+       - 'https://dl.yarnpkg.com/rpm/yarn.repo'
+       - 'https://download.docker.com/linux/fedora/docker-ce.repo'
 
-    - name: Add dfn repo by copr
+    - name: Add dnf repo by copr
       when: ansible_os_family == "RedHat"
       command: dnf copr enable -y sergiomb/google-drive-ocamlfuse
 
@@ -152,6 +156,8 @@
       when: ansible_os_family == "RedHat"
       dnf:
         name: "{{ item }}"
+        # Uncomment if docker-ce cannot be found (Fedora 28)
+        #enablerepo: docker-ce-edge
         state: present
       with_items: "{{ common_packages }} + {{ fedora_packages }}"
 

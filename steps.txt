@@ -1,5 +1,4 @@
 - [x] setup wavebox
 - [x] setup chromium
-- [ ] set dotfiles/xorg/xsession to autorun
 - [x] add ssh key to github
-- [x] set awesome to be default window manager
+- [ ] set dotfiles/xorg/xsession to autorun
