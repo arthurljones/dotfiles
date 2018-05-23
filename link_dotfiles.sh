@@ -59,7 +59,11 @@ link_dotfile() {
     fi
 }
 
-link_dotfile xorg/awesome/rc.lua $HOME/.config/awesome/rc.lua 
+for dotfile in $(find $dotfile_dir/config -type f); do
+    relative=${dotfile#"$dotfile_dir/config/"}
+    dst="$HOME/.config/$relative"
+    link_dotfile "$dotfile" "$dst"
+done
 
 for dotfile in \
     bashrc \
