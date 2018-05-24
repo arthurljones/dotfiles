@@ -59,7 +59,8 @@ link_dotfile() {
     fi
 }
 
-for dotfile in $(find $dotfile_dir/config -type f); do
+# Link top-level files and directories in config
+for dotfile in $dotfile_dir/config/*; do
     # Strip off the path before the dotfile dir
     src=${dotfile#"$dotfile_dir/"}
     # Strip off config for the destination

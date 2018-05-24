@@ -1,2 +1,2 @@
-exec xfce4-session
-
+mkdir -p ~/.cache
+exec /usr/bin/awesome >> ~/.cache/awesome.stdout 2>> ~/.cache/awesome.stderr

@@ -61,7 +61,12 @@
       - 'wget'
       - 'cabextract'
       - 'https://downloads.sourceforge.net/project/mscorefonts2/rpms/msttcore-fonts-installer-2.6-1.noarch.rpm'
+      # TODO: Packages below this line have not been added to the debian package list yet
       - 'docker-ce'
+      - 'qemu-2'
+      - 'libvirt'
+      - 'virt-manager'
+      - 'virt-install'
 
     repo_key_urls:
       - 'https://wavebox.io/dl/client/repo/archive.key'
@@ -188,4 +193,21 @@
         name: sshd
         state: started
         enabled: yes
+
+    - name: Clone arc icon repo
+      git:
+        repo: https://github.com/horst3180/arc-icon-theme
+        depth: 1
+        dest: /opt/build/arc-icon-theme
+
+    - name: Configure arc icons
+      command: ./autogen.sh --prefix=/usr
+      chdir: /opt/build/arc-icon-theme
+
+    - name: Install arc icons
+      command: make install
+      chdir: /opt/build/arc-icon-theme
+
+    - name: Cleanup arc icons
+      command: rm -r /opt/build/arc-icon-theme
 
