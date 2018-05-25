@@ -1,2 +1,9 @@
+# Network manager applet
+dbus-launch nm-applet &
+
+# Run custom xsession script
+exec ~/dotfiles/xorg/xsession
+
+# Launch awesomewm
 mkdir -p ~/.cache
 exec /usr/bin/awesome >> ~/.cache/awesome.stdout 2>> ~/.cache/awesome.stderr
