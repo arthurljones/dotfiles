@@ -180,6 +180,12 @@
         state: present
 
     # Common
+    - name: Ensure docker is running and set to autostart
+      systemd:
+        name: docker
+        enabled: true
+        state: started
+
     - name: Add fuse group
       group:
         name: fuse
