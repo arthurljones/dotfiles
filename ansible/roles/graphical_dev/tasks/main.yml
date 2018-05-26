@@ -1,0 +1,183 @@
+# Ubuntu packages
+- name: Add apt ppa repositories
+  tags: packages
+  become: yes
+  when: ansible_os_family == "Debian"
+  apt_repository:
+    repo: '{{ item }}'
+    codename: xenial
+    update_cache: no
+    state: present
+  with_items:
+    - 'ppa:klaus-vormweg/awesome' # Unofficial
+    - 'ppa:ansible/ansible'
+    - 'ppa:alessandro-strada/ppa' # For google-drive-ocamlfuse
+    - 'ppa:atareao/flameshot' # Unofficial
+
+- name: Add apt repo keys
+  tags: packages
+  become: yes
+  when: ansible_os_family == "Debian"
+  apt_key:
+    url: '{{ item }}'
+    state: present
+  with_items: '{{ repo_key_urls }}'
+
+- name: Add deb repositories
+  tags: packages
+  become: yes
+  when: ansible_os_family == "Debian"
+  apt_repository:
+    update_cache: no
+    repo: '{{ item }}'
+    state: present
+  with_items: "{{ debian_repos }}"
+
+- name: Update apt cache
+  tags: packages
+  become: yes
+  when: ansible_os_family == "Debian"
+  apt:
+    update_cache: yes
+
+- name: Install apt packages
+  tags: packages
+  become: yes
+  when: ansible_os_family == "Debian"
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ common_packages }} + {{ debian_packages }}"
+
+# Fedora packages
+- name: Add rpm keys
+  tags: packages
+  become: yes
+  when: ansible_os_family == "RedHat"
+  rpm_key:
+    key: '{{ item }}'
+    state: present
+  with_items: '{{ repo_key_urls }}'
+
+- name: Add dnf repos by url
+  tags: packages
+  become: yes
+  when: ansible_os_family == "RedHat"
+  command: 'dnf config-manager --add-repo {{ item }}'
+  with_items:
+   - 'https://wavebox.io/dl/client/repo/yum/wavebox.repo'
+   - 'https://dl.yarnpkg.com/rpm/yarn.repo'
+   - 'https://download.docker.com/linux/fedora/docker-ce.repo'
+
+- name: Add dnf repo by copr
+  tags: packages
+  become: yes
+  when: ansible_os_family == "RedHat"
+  command: dnf copr enable -y sergiomb/google-drive-ocamlfuse
+
+- name: Add dnf repos by file
+  tags: packages
+  become: yes
+  when: ansible_os_family == "RedHat"
+  copy:
+    src: ./fedora/resilio-sync.repo
+    dest: /etc/yum.repos.d/resilio-sync.repo
+    mode: 0644
+
+- name: Install dnf packages
+  tags: packages
+  become: yes
+  when: ansible_os_family == "RedHat"
+  dnf:
+    name: "{{ item }}"
+    # Uncomment if docker-ce cannot be found (Fedora 28)
+    #enablerepo: docker-ce-edge
+    state: present
+  with_items: "{{ common_packages }} + {{ fedora_packages }}"
+
+- name: Get rpm dist string
+  # i.e., "fc28" for Fedora 28
+  tags: packages
+  become: yes
+  when: ansible_os_family == "RedHat"
+  args:
+    warn: no
+  command: rpm -E %dist
+  register: rpm_dist
+
+- name: Install zfs rpm package
+  tags: packages
+  become: yes
+  when: ansible_os_family == "RedHat"
+  dnf:
+    name: "http://download.zfsonlinux.org/fedora/zfs-release{{ rpm_dist.stdout }}.noarch.rpm"
+    state: present
+
+# Common
+- name: Ensure docker is running and set to autostart
+  become: yes
+  systemd:
+    name: docker
+    enabled: true
+    state: started
+
+- name: Add fuse group
+  tags: user
+  become: yes
+  group:
+    name: fuse
+    state: present
+
+- name: Use CLI login
+  become: yes
+  command: systemctl set-default multi-user.target
+
+- name: Clone arc icon repo
+  tags: packages
+  become: yes
+  git:
+    repo: https://github.com/horst3180/arc-icon-theme
+    depth: 1
+    dest: /opt/build/arc-icon-theme
+
+- name: Configure arc icons
+  tags: packages
+  become: yes
+  command: ./autogen.sh --prefix=/usr
+  chdir: /opt/build/arc-icon-theme
+
+- name: Install arc icons
+  tags: packages
+  become: yes
+  command: make install
+  chdir: /opt/build/arc-icon-theme
+
+- name: Cleanup arc icons
+  tags: packages
+  become: yes
+  command: rm -r /opt/build/arc-icon-theme
+
+- name: Make the aj user sudoer with no password (for rvm)
+  tags: user
+  become: yes
+  lineinfile: "dest=/etc/sudoers state=present regexp='^aj' line='aj ALL=(ALL) NOPASSWD: ALL'"
+
+- name: Install rvm
+  include_role:
+    name: rvm_io.ruby
+  vars:
+    rvm1_rubies:
+      - 'ruby-2.4.1'
+    rvm1_user: aj
+
+# TODO: nvm
+
+- name: Download and install docker-compose
+  tags: packages
+  become: yes
+  get_url:
+    url: "https://github.com/docker/compose/releases/download/1.18.0/docker-compose-{{ ansible_system }}-{{ ansible_architecture }}"
+    dest: /usr/local/bin/docker-compose
+    mode: 0644
+    owner: root
+    group: root

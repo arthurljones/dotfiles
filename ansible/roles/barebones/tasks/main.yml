@@ -1,0 +1,76 @@
+- name: Install apt preload packages
+  tags: packages
+  when: ansible_os_family == "Debian"
+  apt:
+    name: '{{ item }}'
+    state: present
+  with_items: '{{ debian_preload_packages }}'
+  become: yes
+
+- name: Install apt packages
+  tags: packages
+  when: ansible_os_family == "Debian"
+  apt:
+    update_cache: yes
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ common_packages }} + {{ debian_packages }}"
+  become: yes
+
+# Fedora packages
+- name: Install selinux python bindings
+  tags: packages
+  when: ansible_os_family == "RedHat"
+  dnf:
+    name: "{{ item }}"
+    state: present
+  with_items: '{{ fedora_preload_packages }}'
+  become: yes
+
+- name: Install dnf packages
+  tags: packages
+  when: ansible_os_family == "RedHat"
+  dnf:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ common_packages }} + {{ fedora_packages }}"
+  become: yes
+
+- name: Start sshd at boot
+  systemd:
+    name: sshd
+    state: started
+    enabled: yes
+  become: yes
+
+- name: Flesh out aj user
+  tags: user
+  user:
+    name: aj
+    home: /home/aj
+    move_home: yes
+    shell: /bin/bash
+    groups: ['adm']
+    append: yes
+    generate_ssh_key: yes
+    ssh_key_bits: 4096
+    ssh_key_comment: aj@dev
+    ssh_key_type: rsa
+    ssh_key_file: .ssh/id_rsa
+    state: present
+  become: yes
+
+- name: Clone dotfiles
+  tags:
+  - dotfiles
+  git:
+    repo: 'https://github.com/arthurljones/dotfiles.git'
+    dest: /home/aj/dotfiles
+    version: master
+
+- name: Link dotfiles
+  tags: dotfiles
+  command: /home/aj/dotfiles/link_dotfiles.sh
+  args:
+    chdir: /home/aj
+

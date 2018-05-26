@@ -1,8 +1,0 @@
-- hosts: dev
-  remote_user: aj
-  become: yes
-  any_errors_fatal: yes
-  tasks:
-
-    - name: Make the aj user sudoer with no password (for rvm)
-      lineinfile: "dest=/etc/sudoers state=present regexp='^aj' line='aj ALL=(ALL) NOPASSWD: ALL'"

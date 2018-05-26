@@ -1,0 +1,23 @@
+common_packages:
+  - 'git'
+  - 'vim'
+  - 'screen'
+  - 'ca-certificates'
+  - 'curl'
+  - 'wget'
+
+debian_preload_packages:
+  - 'apt-transport-https'
+  - 'software-properties-common'
+
+debian_packages:
+  - 'silversearcher-ag'
+  - 'ssh'
+
+fedora_preload_packages:
+  - 'python2-libselinux'
+  - 'python3-libselinux'
+
+fedora_packages:
+  - 'the_silver_searcher'
+  - 'openssh-server'
