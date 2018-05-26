@@ -571,3 +571,5 @@ client.connect_signal("focus", function(c) c.border_color = beautiful.border_foc
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
 
+awful.spawn.with_shell("/home/aj/dotfiles/xorg/xsession")
+awful.spawn.with_shell("google-drive-ocamlfuse /home/aj/google_drive")
