@@ -343,7 +343,9 @@ globalkeys = gears.table.join(
 
     -- Screenshot
     awful.key({ "Control", "Shift" }, "5", function() awful.util.spawn("flameshot gui") end,
-        {description = "take a screenshot"})
+        {description = "take a screenshot", group = "misc"}),
+    awful.key({ modkey, "Control" }, "l", function() awful.util.spawn("xscreensaver-command -lock") end,
+        {description = "lock the screen", group = "misc"})
 )
 
 clientkeys = gears.table.join(

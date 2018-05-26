@@ -1,5 +1,9 @@
 # Network manager applet
 dbus-launch nm-applet &
+
+# Power manager (including screen blanking)
+xfce-power-manager &
+
 # Filesystem daemon (auto-mounts flash drives, etc)
 thunar --daemon &
 
