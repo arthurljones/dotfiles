@@ -38,7 +38,7 @@
 
 - name: Start sshd at boot
   systemd:
-    name: sshd
+    name: "{{ ssh_service | default('sshd') }}"
     state: started
     enabled: yes
   become: yes
