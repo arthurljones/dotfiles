@@ -13,6 +13,8 @@ prepend_to_path() {
     export PATH
 }
 
+export TZ='America/Los_Angeles'
+
 append_to_path "/sbin"
 append_to_path "/usr/sbin"
 append_to_path "/usr/local/sbin"
