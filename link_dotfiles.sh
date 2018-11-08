@@ -78,6 +78,7 @@ for dotfile in \
     fonts  \
     xorg/xinitrc \
     xorg/xsession \
+    xorg/xscreensaver \
     gemrc \
     iterm2 \
     ; do

@@ -22,6 +22,7 @@ alias dfi="df -ih"
 alias sshl="ssh -L 8080:localhost:8080"
 alias :e="vim"
 alias r="./ride.rb"
+alias killass="tmux kill-session -t rwpgs"
 
 # Fedora/CentOS vim is not compiled with X11 support, but vimx is. 
 if [[ -e /usr/bin/vimx ]]; then

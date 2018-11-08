@@ -17,7 +17,7 @@ require("awful.hotkeys_popup.keys")
 -- local volume_widget = require("volume")
 local cpu_widget = require("awesome-wm-widgets.cpu-widget.cpu-widget")
 local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
-local volume_widget = require("awesome-wm-widgets.volumearc-widget.volumearc")
+local volume_widget = require("awesome-wm-widgets.volumebar-widget.volumebar")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -344,7 +344,7 @@ globalkeys = gears.table.join(
     -- Screenshot
     awful.key({ "Control", "Shift" }, "5", function() awful.util.spawn("flameshot gui") end,
         {description = "take a screenshot", group = "misc"}),
-    awful.key({ modkey, "Control" }, "l", function() awful.util.spawn("xscreensaver-command -lock") end,
+    awful.key({ modkey, "Control", "Shift" }, "l", function() awful.util.spawn("xscreensaver-command -lock") end,
         {description = "lock the screen", group = "misc"})
 )
 
