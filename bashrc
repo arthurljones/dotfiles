@@ -26,6 +26,12 @@ prepend_to_path "$HOME/.npm-global/bin"
 prepend_to_path "$HOME/Library/Python/2.7/bin"
 prepend_to_path "/opt/wavebox"
 
+# Load host-specific commands
+host_specific="$dotfile_dir/hosts/$HOSTNAME.sh"
+if [ -f $host_specific ]; then
+  source $host_specific
+fi
+
 # Node Version Manager (nvm)
 export NVM_DIR="$HOME/.nvm"
 [[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -33,8 +39,8 @@ export NVM_DIR="$HOME/.nvm"
 
 # Ruby Version Manager (rvm)
 export rvmsudo_secure_path=0
-export PATH="$HOME/.rvm/bin:$PATH" # Add RVM to PATH for scripting
-[[ -s $HOME/.rvm/scripts/rvm ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+[[ -s "$HOME/.rvm/bin" ]] && append_to_path "$HOME/.rvm/bin" # Add RVM to PATH for scripting
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 function update_dotfiles {
   if [[ $EUID -ne 0 ]]; then
@@ -47,12 +53,6 @@ function update_dotfiles {
     source $dotfile_dir/bashrc
   fi
 }
-
-# Load host-specific commands
-host_specific="$dotfile_dir/hosts/$HOSTNAME.sh"
-if [ -f $host_specific ]; then
-  source $host_specific
-fi
 
 if [[ $- == *i* ]]; then
   source "$dotfile_dir/bashrc_interactive"
