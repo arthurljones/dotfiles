@@ -6,6 +6,8 @@ common_packages:
   - 'curl'
   - 'wget'
   - 'autoconf'
+  - 'dbus-devel'
+  - 'dbus-glib-devel'
 
 debian_preload_packages:
   - 'apt-transport-https'

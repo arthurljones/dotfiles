@@ -17,7 +17,9 @@ require("awful.hotkeys_popup.keys")
 -- local volume_widget = require("volume")
 local cpu_widget = require("awesome-wm-widgets.cpu-widget.cpu-widget")
 local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
-local volume_widget = require("awesome-wm-widgets.volumebar-widget.volumebar")
+-- local volume_widget = require("awesome-wm-widgets.volumebar-widget.volumebar")
+local volume_control = require("volume-control")
+volumecfg = volume_control({})
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -221,11 +223,13 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
+            awful.widget.watch('/home/aj/dotfiles/xorg/clementine_status.rb', 1),
             mykeyboardlayout,
             wibox.widget.systray(),
             cpu_widget,
             ram_widget,
-            volume_widget,
+            -- volume_widget,
+            volumecfg.widget,
             mytextclock,
             s.mylayoutbox,
         },
@@ -344,6 +348,13 @@ globalkeys = gears.table.join(
     -- Screenshot
     awful.key({ "Control", "Shift" }, "5", function() awful.util.spawn("flameshot gui") end,
         {description = "take a screenshot", group = "misc"}),
+
+    -- Volume
+    awful.key({}, "XF86AudioRaiseVolume", function() volumecfg:up() end),
+    awful.key({}, "XF86AudioLowerVolume", function() volumecfg:down() end),
+    awful.key({}, "XF86AudioMute",        function() volumecfg:toggle() end),
+
+    -- Lockscreen
     awful.key({ modkey, "Control", "Shift" }, "l", function() awful.util.spawn("xscreensaver-command -lock") end,
         {description = "lock the screen", group = "misc"})
 )
