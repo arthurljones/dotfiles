@@ -43,6 +43,7 @@ augroup filetypedetect
     au BufNewFile,BufRead /etc/php*/fpm/* set syntax=dosini
     au BufNewFile,BufRead /var/cache/bind* set syntax=dns
     au BufNewFile,BufRead Capfile set syntax=ruby
+    au BufRead,BufNewFile keepalived.conf set ft=keepalived
 augroup END
 
 " Use vim-jsx on all javascript files

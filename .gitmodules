@@ -58,3 +58,6 @@
         path = vim/bundle/vim-surround
         url = https://github.com/tpope/vim-surround.git
 
+[submodule "vim/bundle/keepalived-syntax"]
+	path = vim/bundle/keepalived-syntax
+	url = https://github.com/glidenote/keepalived-syntax.vim
