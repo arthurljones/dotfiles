@@ -23,6 +23,7 @@ alias sshl="ssh -L 8080:localhost:8080"
 alias :e="vim"
 alias r="./ride.rb"
 alias killass="tmux kill-session -t rwpgs"
+alias mobile_refresh="git fetch --all; git checkout develop; git reset --hard upstream/develop; git push"
 
 # Fedora/CentOS vim is not compiled with X11 support, but vimx is. 
 if [[ -e /usr/bin/vimx ]]; then

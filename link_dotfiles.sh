@@ -74,6 +74,7 @@ for dotfile in \
     profile  \
     vim  \
     vimrc  \
+    ideavimrc \
     gitconfig  \
     fonts  \
     xorg/xinitrc \
