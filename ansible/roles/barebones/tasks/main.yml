@@ -52,25 +52,6 @@
     shell: /bin/bash
     groups: ['adm']
     append: yes
-    generate_ssh_key: yes
-    ssh_key_bits: 4096
-    ssh_key_comment: aj@dev
-    ssh_key_type: rsa
-    ssh_key_file: .ssh/id_rsa
     state: present
   become: yes
 
-  #- name: Clone dotfiles
-  #  tags:
-  #  - dotfiles
-  #  git:
-  #    repo: 'https://github.com/arthurljones/dotfiles.git'
-  #    dest: /home/aj/dotfiles
-  #    version: master
-  #
-  #- name: Link dotfiles
-  #  tags: dotfiles
-  #  command: /home/aj/dotfiles/link_dotfiles.sh
-  #  args:
-  #    chdir: /home/aj
-  #

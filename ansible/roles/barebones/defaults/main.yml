@@ -7,6 +7,7 @@ common_packages:
   - 'curl'
   - 'wget'
   - 'autoconf'
+  - 'automake'
   - 'ruby'
   - 'ruby-dev'
 

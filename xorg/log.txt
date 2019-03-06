@@ -1,0 +1,12 @@
+xsessionrc Tue Mar  5 22:13:35 PST 2019
+/home/aj/dotfiles/xorg/remap_mouse_button.sh Tue Mar  5 22:13:35 PST 2019
+xmodmap Tue Mar  5 22:13:35 PST 2019
+xset r rate Tue Mar  5 22:13:35 PST 2019
+xsessionrc Tue Mar  5 22:13:35 PST 2019
+/home/aj/dotfiles/xorg/remap_mouse_button.sh Tue Mar  5 22:13:35 PST 2019
+xmodmap Tue Mar  5 22:13:35 PST 2019
+xset r rate Tue Mar  5 22:13:35 PST 2019
+xsessionrc Tue Mar  5 22:25:45 PST 2019
+/home/aj/dotfiles/xorg/remap_mouse_button.sh Tue Mar  5 22:25:45 PST 2019
+xmodmap Tue Mar  5 22:25:45 PST 2019
+xset r rate Tue Mar  5 22:25:45 PST 2019

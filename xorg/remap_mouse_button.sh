@@ -1,4 +1,5 @@
 #!/bin/bash
+echo "$0 `date`" >> $HOME/dotfiles/xorg/log.txt
 
 if ! type xinput >/dev/null 2>&1; then
     echo "No xinput on this system, can't remap mouse" >&2

@@ -5,7 +5,7 @@
   when: ansible_os_family == "Debian"
   apt_repository:
     repo: '{{ item }}'
-    codename: xenial
+    codename: bionic
     update_cache: no
     state: present
   with_items:
@@ -128,10 +128,6 @@
     name: fuse
     state: present
 
-- name: Use CLI login
-  become: yes
-  command: systemctl set-default multi-user.target
-
 - name: Clone arc icon repo
   tags: packages
   become: yes
@@ -155,22 +151,9 @@
 - name: Cleanup arc icons
   tags: packages
   become: yes
-  command: rm -r /opt/build/arc-icon-theme
-
-  #- name: Make the aj user sudoer with no password (for rvm)
-  #  tags: user
-  #  become: yes
-  #  lineinfile: "dest=/etc/sudoers state=present regexp='^aj' line='aj ALL=(ALL) NOPASSWD: ALL'"
-  #
-  #- name: Install rvm
-  #  include_role:
-  #    name: rvm_io.ruby
-  #  vars:
-  #    rvm1_rubies:
-  #      - 'ruby-2.4.1'
-  #    rvm1_user: aj
-
-# TODO: nvm
+  file:
+    path: /opt/build/arc-icon-theme
+    state: absent
 
 - name: Download and install docker-compose
   tags: packages
