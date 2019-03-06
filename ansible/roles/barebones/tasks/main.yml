@@ -60,17 +60,17 @@
     state: present
   become: yes
 
-- name: Clone dotfiles
-  tags:
-  - dotfiles
-  git:
-    repo: 'https://github.com/arthurljones/dotfiles.git'
-    dest: /home/aj/dotfiles
-    version: master
-
-- name: Link dotfiles
-  tags: dotfiles
-  command: /home/aj/dotfiles/link_dotfiles.sh
-  args:
-    chdir: /home/aj
-
+  #- name: Clone dotfiles
+  #  tags:
+  #  - dotfiles
+  #  git:
+  #    repo: 'https://github.com/arthurljones/dotfiles.git'
+  #    dest: /home/aj/dotfiles
+  #    version: master
+  #
+  #- name: Link dotfiles
+  #  tags: dotfiles
+  #  command: /home/aj/dotfiles/link_dotfiles.sh
+  #  args:
+  #    chdir: /home/aj
+  #

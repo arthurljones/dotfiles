@@ -75,14 +75,14 @@
   when: ansible_os_family == "RedHat"
   command: dnf copr enable -y sergiomb/google-drive-ocamlfuse
 
-- name: Add dnf repos by file
-  tags: packages
-  become: yes
-  when: ansible_os_family == "RedHat"
-  copy:
-    src: ./fedora/resilio-sync.repo
-    dest: /etc/yum.repos.d/resilio-sync.repo
-    mode: 0644
+  #- name: Add dnf repos by file
+  #  tags: packages
+  #  become: yes
+  #  when: ansible_os_family == "RedHat"
+  #  copy:
+  #    src: ./fedora/resilio-sync.repo
+  #    dest: /etc/yum.repos.d/resilio-sync.repo
+  #    mode: 0644
 
 - name: Install dnf packages
   tags: packages
@@ -157,18 +157,18 @@
   become: yes
   command: rm -r /opt/build/arc-icon-theme
 
-- name: Make the aj user sudoer with no password (for rvm)
-  tags: user
-  become: yes
-  lineinfile: "dest=/etc/sudoers state=present regexp='^aj' line='aj ALL=(ALL) NOPASSWD: ALL'"
-
-- name: Install rvm
-  include_role:
-    name: rvm_io.ruby
-  vars:
-    rvm1_rubies:
-      - 'ruby-2.4.1'
-    rvm1_user: aj
+  #- name: Make the aj user sudoer with no password (for rvm)
+  #  tags: user
+  #  become: yes
+  #  lineinfile: "dest=/etc/sudoers state=present regexp='^aj' line='aj ALL=(ALL) NOPASSWD: ALL'"
+  #
+  #- name: Install rvm
+  #  include_role:
+  #    name: rvm_io.ruby
+  #  vars:
+  #    rvm1_rubies:
+  #      - 'ruby-2.4.1'
+  #    rvm1_user: aj
 
 # TODO: nvm
 

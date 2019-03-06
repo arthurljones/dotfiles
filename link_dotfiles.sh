@@ -78,7 +78,7 @@ for dotfile in \
     gitconfig  \
     fonts  \
     xorg/xinitrc \
-    xorg/xsession \
+    xorg/xsessionrc \
     xorg/xscreensaver \
     gemrc \
     iterm2 \

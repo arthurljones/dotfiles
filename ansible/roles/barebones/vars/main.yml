@@ -2,12 +2,13 @@ common_packages:
   - 'git'
   - 'vim'
   - 'screen'
+  - 'tmux'
   - 'ca-certificates'
   - 'curl'
   - 'wget'
   - 'autoconf'
-  - 'dbus-devel'
-  - 'dbus-glib-devel'
+  - 'ruby'
+  - 'ruby-dev'
 
 debian_preload_packages:
   - 'apt-transport-https'

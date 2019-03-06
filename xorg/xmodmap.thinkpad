@@ -1,0 +1,16 @@
+clear Control
+clear Mod1
+clear Mod4
+
+! alt - use win key, which is left of alt
+add mod1 = Super_L 
+
+! super/cmd/win - use keys closest to spacebar
+add mod4 = Alt_L Alt_R
+
+! ctrl (including caps lock key)
+keycode 66 = Control_L
+add Control = Caps_Lock Control_L Control_R
+
+! no caps lock
+clear Lock

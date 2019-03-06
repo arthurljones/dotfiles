@@ -20,6 +20,7 @@ local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
 -- local volume_widget = require("awesome-wm-widgets.volumebar-widget.volumebar")
 local volume_control = require("volume-control")
 volumecfg = volume_control({})
+local battery_widget = require("awesome-wm-widgets.battery-widget.battery")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -230,6 +231,7 @@ awful.screen.connect_for_each_screen(function(s)
             ram_widget,
             -- volume_widget,
             volumecfg.widget,
+            battery_widget,
             mytextclock,
             s.mylayoutbox,
         },
