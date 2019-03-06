@@ -1,7 +1,6 @@
 #!/bin/sh
 
 xorg_conf=$HOME/dotfiles/xorg
-echo "xsessionrc `date`" >> $xorg_conf/log.txt
 
 # Network manager applet
 #dbus-launch nm-applet &
@@ -16,12 +15,12 @@ echo "xsessionrc `date`" >> $xorg_conf/log.txt
 $xorg_conf/remap_mouse_button.sh
 
 # Load up our custom xmodmap
-xmodmap $xorg_conf/xmodmap.thinkpad
-echo "xmodmap `date`" >> $xorg_conf/log.txt
+#xmodmap $xorg_conf/xmodmap.thinkpad
+
+setxkbmap -option ctrl:nocaps -option altwin:swap_alt_win
 
 # Set keyboard repeat delay to 400ms and repeat rate to 100
 xset r rate 400 100
-echo "xset r rate `date`" >> $xorg_conf/log.txt
 
 # Fix for slow-launching gnome apps like xfce4-power-manager-settings
 #dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY

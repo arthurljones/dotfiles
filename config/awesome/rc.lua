@@ -14,14 +14,6 @@ local hotkeys_popup = require("awful.hotkeys_popup").widget
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 
--- local volume_widget = require("volume")
-local cpu_widget = require("awesome-wm-widgets.cpu-widget.cpu-widget")
-local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
--- local volume_widget = require("awesome-wm-widgets.volumebar-widget.volumebar")
-local volume_control = require("volume-control")
-volumecfg = volume_control({})
-local battery_widget = require("awesome-wm-widgets.battery-widget.battery")
-
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -210,7 +202,7 @@ awful.screen.connect_for_each_screen(function(s)
     s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, tasklist_buttons)
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s })
+    s.mywibox = awful.wibar({ position = "top", screen = s, width = 1700 })
 
     -- Add widgets to the wibox
     s.mywibox:setup {
@@ -225,15 +217,11 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             awful.widget.watch('/home/aj/dotfiles/xorg/clementine_status.rb', 1),
+            awful.widget.watch("cat /proc/loadavg | cut -f1,2,3 -d' '", 1),
             mykeyboardlayout,
             wibox.widget.systray(),
-            cpu_widget,
-            ram_widget,
-            -- volume_widget,
-            volumecfg.widget,
-            battery_widget,
             mytextclock,
-            s.mylayoutbox,
+            s.mylayoutbox
         },
     }
 end)
