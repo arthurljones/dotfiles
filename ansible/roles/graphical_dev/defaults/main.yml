@@ -7,7 +7,6 @@ common_packages:
   - 'flameshot'
   - 'xclip'
   - 's3cmd'
-  #- 'resilio-sync'
   - 'awesome'
   - 'smartmontools'
   - 'ansible'
@@ -16,6 +15,10 @@ common_packages:
   - 'virt-manager'
   - 'virt-viewer'
   - 'docker-ce'
+  - 'ruby-bundler'
+  - 'earlyoom'
+  - 'redis'
+  - 'redis-tools'
 
 debian_packages:
   - 'vim-gtk'

@@ -1,5 +1,5 @@
 favorites=firefox.desktop,thunderbird.desktop,mintinstall.desktop,Thunar.desktop,xfce4-terminal.desktop,xed.desktop,xfce4-taskmanager.desktop
-recent=google-chrome.desktop,xfce4-terminal.desktop,xed.desktop
+recent=xfce-session-settings.desktop,redshift-gtk.desktop,xfce4-taskmanager.desktop,google-chrome.desktop,xfce4-terminal.desktop,xed.desktop
 button-title=Applications
 button-icon=/usr/share/icons/hicolor/scalable/apps/linuxmint-logo-5.svg
 button-single-row=false

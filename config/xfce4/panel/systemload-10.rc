@@ -12,7 +12,7 @@ Color=rgb(0,0,192)
 Text=cpu
 
 [SL_Mem]
-Enabled=false
+Enabled=true
 Use_Label=false
 Color=rgb(0,192,0)
 Text=mem

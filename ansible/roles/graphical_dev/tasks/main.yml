@@ -13,6 +13,7 @@
     - 'ppa:ansible/ansible'
     - 'ppa:alessandro-strada/ppa' # For google-drive-ocamlfuse
     - 'ppa:atareao/flameshot' # Unofficial
+    - 'ppa:jonathonf/vim' # Latest vim backports
 
 - name: Add apt repo keys
   tags: packages
@@ -33,12 +34,13 @@
     state: present
   with_items: "{{ debian_repos }}"
 
-- name: Update apt cache
+- name: Update apt cache and upgrade existing packages
   tags: packages
   become: yes
   when: ansible_os_family == "Debian"
   apt:
     update_cache: yes
+    upgrade: yes
 
 - name: Install apt packages
   tags: packages
@@ -161,6 +163,6 @@
   get_url:
     url: "https://github.com/docker/compose/releases/download/1.18.0/docker-compose-{{ ansible_system }}-{{ ansible_architecture }}"
     dest: /usr/local/bin/docker-compose
-    mode: 0644
+    mode: 0755
     owner: root
     group: root
