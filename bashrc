@@ -4,12 +4,12 @@ script_path=$(realpath $BASH_SOURCE)
 dotfile_dir=${script_path%/*}
 
 append_to_path() {
-    [[ -d $1 ]] && PATH="$PATH:$1"
+    [[ -d $1 && ! ":$PATH:" == *"$1"* ]] && PATH="$PATH:$1"
     export PATH
 }
 
 prepend_to_path() {
-    [[ -d $1 ]] && PATH="$1:$PATH"
+    [[ -d $1 && ! ":$PATH:" == *"$1"* ]] && PATH="$1:$PATH"
     export PATH
 }
 

@@ -56,6 +56,7 @@
       <property name="enable-mpris" type="empty"/>
       <property name="mixer-command" type="empty"/>
       <property name="show-notifications" type="empty"/>
+      <property name="mpris-players" type="string" value="vlc"/>
     </property>
     <property name="plugin-12" type="empty">
       <property name="digital-format" type="empty"/>

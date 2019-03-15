@@ -2,6 +2,9 @@
 
 xorg_conf=$HOME/dotfiles/xorg
 
+# Load bashrc in case it hasn't been loaded yet
+source $HOME/.bashrc
+
 # Network manager applet
 #dbus-launch nm-applet &
 
@@ -21,6 +24,9 @@ setxkbmap -option ctrl:nocaps -option altwin:swap_alt_win
 
 # Set keyboard repeat delay to 400ms and repeat rate to 100
 xset r rate 400 100
+
+# Disable trackpoint
+xinput set-prop "TPPS/2 IBM TrackPoint" "Device Enabled" 0
 
 # Fix for slow-launching gnome apps like xfce4-power-manager-settings
 #dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
