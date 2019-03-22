@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 xorg_conf=$HOME/dotfiles/xorg
 
