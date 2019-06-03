@@ -1,5 +1,5 @@
 favorites=firefox.desktop,thunderbird.desktop,mintinstall.desktop,Thunar.desktop,xfce4-terminal.desktop,xed.desktop,xfce4-taskmanager.desktop
-recent=xfce-session-settings.desktop,xfce-display-settings.desktop,redshift-gtk.desktop,xfce4-taskmanager.desktop,google-chrome.desktop,xfce4-terminal.desktop,xed.desktop
+recent=mintsources.desktop,xfce-session-settings.desktop,xfce-display-settings.desktop,redshift-gtk.desktop,xfce4-taskmanager.desktop,google-chrome.desktop,xfce4-terminal.desktop,xed.desktop
 button-title=Applications
 button-icon=/usr/share/icons/hicolor/scalable/apps/linuxmint-logo-5.svg
 button-single-row=false
@@ -21,7 +21,7 @@ position-commands-alternate=false
 position-categories-alternate=true
 stay-on-focus-out=false
 confirm-session-command=true
-menu-width=958
+menu-width=1918
 menu-height=1038
 menu-opacity=100
 command-settings=xfce4-settings-manager

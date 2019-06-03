@@ -24,7 +24,7 @@ alias :e="vim"
 alias r="./ride.rb"
 alias killass="tmux kill-session -t rwpgs"
 alias mobile_refresh="git fetch --all; git checkout develop; git reset --hard upstream/develop; git push"
-alias feh="feh --scale-down"
+alias feh="feh -r --auto-rotate --scale-down"
 alias recent="find . -mmin -15 -type f"
 
 # Fedora/CentOS vim is not compiled with X11 support, but vimx is. 
@@ -89,9 +89,9 @@ fi
 #Set colors for various filetypes
 eval `dircolors -b $dotfile_dir/dircolors.ansi-dark`
 
-alias ls="ls --color=always"
-alias grep="grep --color=always"
-alias egrep="egrep --color=always"
+alias ls="ls --color=auto"
+alias grep="grep --color=auto"
+alias egrep="egrep --color=auto"
 
 export EDITOR=vim
 
