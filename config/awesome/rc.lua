@@ -117,7 +117,7 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- Keyboard map indicator and switcher
 mykeyboardlayout = awful.widget.keyboardlayout()
 
--- {{{ Wibar
+-- {{{ wibox
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock("%a %d %b %I:%M %p")
 
@@ -204,8 +204,8 @@ awful.screen.connect_for_each_screen(function(s)
     -- Create a tasklist widget
     s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, tasklist_buttons)
 
-    -- Create the wibox
-    s.mywibox = awful.wibox({ screen = s, width = 1800 })
+    -- Create the wibar
+    s.mywibox = awful.wibar({ screen = s, width = 1800 })
     s.mywibox.x = 0
 
     -- Add widgets to the wibox

@@ -27,5 +27,5 @@ puts "Each passphrase should have #{Math::log2(combinations).floor} bits of entr
 puts "which is stronger than a #{Math::log(combinations, 96).floor} character random pass"
 
 count.times do
-  puts length.times.collect { words[SecureRandom.random_number(words.count)] }.join("").downcase
+  puts length.times.collect { words[SecureRandom.random_number(words.count)] }.join(" ").downcase
 end
