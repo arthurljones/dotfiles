@@ -178,7 +178,8 @@
 	human = name-rev --name-only --refs=refs/heads/*
 	serve = !git daemon --reuseaddr --verbose  --base-path=. --export-all ./.git
 	snapshot = !git stash save "snapshot: $(date)" && git stash apply "stash@{0}"
-	deletemerged = !git branch --merged | egrep -v \"(^\\*|master|dev|beta)\" | xargs git branch -d
+	deletemerged = !git branch --merged | egrep -v \"(^\\*|master|devel|beta)\" | xargs git branch -d
+        refreshdevelop = !git checkout develop && git fetch --all --prune && git reset --hard upstream/develop && git deletemerged
 [merge]
 	tool = vimdiff
 [filter "lfs"]

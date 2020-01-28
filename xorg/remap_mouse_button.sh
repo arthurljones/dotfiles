@@ -15,12 +15,8 @@ if ! xset q &>/dev/null; then
     exit 1
 fi
 
-mouse_id=$(xinput list | grep "Logitech.*pointer" | head -n 1 |  sed 's/.*id=\([0-9]\+\).*/\1/g')
-
-if [ -z "$mouse_id" ]; then
-    echo "Couldn't find mouse ID" >&2
-    exit 1
-fi
-
-# Map buttons 8 and 9 (top side buttons) to button 2 (middle button)
-xinput set-button-map $mouse_id 1 2 3 4 5 6 7 2 2 10 11 12 13 14 15 16
+mouse_ids=$(xinput list | grep -i "mouse.*pointer" |  sed 's/.*id=\([0-9]\+\).*/\1/g')
+for mouse_id in $mouse_ids; do
+    # Map buttons 8 and 9 (back/forward) to button 2 (middle)
+    xinput set-button-map $mouse_id 1 2 3 4 5 6 7 2 2 10 11 12 13 14 15 16
+done
