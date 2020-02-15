@@ -22,5 +22,5 @@
       <value type="string" value="xfce4-power-manager"/>
     </property>
   </property>
-  <property name="do-not-disturb" type="bool" value="false"/>
+  <property name="do-not-disturb" type="bool" value="true"/>
 </channel>
