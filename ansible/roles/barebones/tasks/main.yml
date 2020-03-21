@@ -43,7 +43,7 @@
   tags:
   - dotfiles
   git:
-    repo: 'https://github.com/arthurljones/dotfiles.git'
+    repo: 'git@github:arthurljones/dotfiles.git'
     dest: /home/aj/dotfiles
     version: master
 
