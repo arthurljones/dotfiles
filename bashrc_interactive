@@ -107,21 +107,12 @@ else
     prompt='\$'
 fi
 
-# Set the custom prompt. Needs to happen before iTerm2 shell integration or it won't stick
+# Set the custom prompt
 PS1='~> '$prompt_user'@\['$ORANGE'\]\h\['$RESET'\]:\w\a$(___git_ps1 " (%s)")\n'${prompt}' '
 
 #If we're a remote terminal, then set the title of the terminal every time we run
 if [[ $(tty) =~ /dev/pts.* ]]; then
     PROMPT_COMMAND="default_title"
-fi
-
-# iTerm2 shell integration
-# Don't do iTerm integration from inside a tmux session
-if ! { [ "$TERM" = "screen" ] && [ -n "$TMUX" ]; } then
-    if $dotfile_dir/isiterm2.sh; then
-        shell_int="$dotfile_dir/iterm2_shell_integration.`basename $SHELL`"
-        test -e "$shell_int" && source "$shell_int"
-    fi
 fi
 
 # don't put duplicate lines or lines starting with space in the history.

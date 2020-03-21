@@ -32,21 +32,6 @@ debian_packages:
   - 'libvirt-bin'
   - 'virtinst'
 
-fedora_packages:
-  - 'vim-X11'
-  - 'chromium'
-  - 'ImageMagick'
-  - 'Wavebox'
-  - 'levien-inconsolata-fonts'
-  - 'kernel-devel'
-  - 'xorg-x11-font-utils'
-  - 'fontconfig'
-  - 'cabextract'
-  - 'https://downloads.sourceforge.net/project/mscorefonts2/rpms/msttcore-fonts-installer-2.6-1.noarch.rpm'
-  - 'qemu-2'
-  - 'libvirt'
-  - 'virt-install'
-
 debian_repos:
   - 'deb https://wavebox.io/dl/client/repo/ x86_64/'
   - 'deb http://linux-packages.resilio.com/resilio-sync/deb resilio-sync non-free'

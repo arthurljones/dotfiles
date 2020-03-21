@@ -6,8 +6,8 @@ common_packages:
   - 'curl'
   - 'wget'
   - 'autoconf'
-  - 'dbus-devel'
-  - 'dbus-glib-devel'
+  - 'libdbus-c++-dev'
+  - 'libdbus-glib-1-dev'
 
 debian_preload_packages:
   - 'apt-transport-https'
@@ -17,12 +17,3 @@ debian_packages:
   - 'silversearcher-ag'
   - 'ssh'
   - 'build-essential'
-
-fedora_preload_packages:
-  - 'python2-libselinux'
-  - 'python3-libselinux'
-
-fedora_packages:
-  - 'the_silver_searcher'
-  - 'openssh-server'
-  - '@development-tools'

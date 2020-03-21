@@ -81,7 +81,6 @@ for dotfile in \
     xorg/xsession \
     xorg/xscreensaver \
     gemrc \
-    iterm2 \
     ; do
     link_dotfile $dotfile
 done

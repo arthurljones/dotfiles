@@ -1,6 +1,5 @@
 - name: Install apt preload packages
   tags: packages
-  when: ansible_os_family == "Debian"
   apt:
     name: '{{ item }}'
     state: present
@@ -9,31 +8,11 @@
 
 - name: Install apt packages
   tags: packages
-  when: ansible_os_family == "Debian"
   apt:
     update_cache: yes
     name: "{{ item }}"
     state: present
   with_items: "{{ common_packages }} + {{ debian_packages }}"
-  become: yes
-
-# Fedora packages
-- name: Install selinux python bindings
-  tags: packages
-  when: ansible_os_family == "RedHat"
-  dnf:
-    name: "{{ item }}"
-    state: present
-  with_items: '{{ fedora_preload_packages }}'
-  become: yes
-
-- name: Install dnf packages
-  tags: packages
-  when: ansible_os_family == "RedHat"
-  dnf:
-    name: "{{ item }}"
-    state: present
-  with_items: "{{ common_packages }} + {{ fedora_packages }}"
   become: yes
 
 - name: Start sshd at boot
