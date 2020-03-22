@@ -39,13 +39,13 @@
     state: present
   become: yes
 
-- name: Clone dotfiles
-  tags:
-  - dotfiles
-  git:
-    repo: 'git@github:arthurljones/dotfiles.git'
-    dest: /home/aj/dotfiles
-    version: master
+  #- name: Clone dotfiles
+  #  tags:
+  #  - dotfiles
+  #  git:
+  #    repo: 'git@github:arthurljones/dotfiles.git'
+  #    dest: /home/aj/dotfiles
+  #    version: master
 
 - name: Link dotfiles
   tags: dotfiles
