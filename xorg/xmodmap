@@ -1,16 +1,16 @@
 clear Control
 clear Mod1
 clear Mod4
+! no caps lock
+clear Lock
 
 ! alt
-add mod1 = Alt_L 
+add mod4 = Alt_L 
 
 ! super/cmd/win
-add mod4 = Super_L Alt_R
+add mod1 = Super_L Alt_R
 
 ! ctrl (including caps lock key)
 keycode 66 = Control_L
 add Control = Caps_Lock Control_L Control_R Super_R
 
-! no caps lock
-clear Lock
