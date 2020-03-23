@@ -81,6 +81,8 @@ for dotfile in \
     xorg/xsession \
     xorg/xscreensaver \
     gemrc \
+    xorg/xmonad \
+    xorg/xmonad/xmobarrc \
     ; do
     link_dotfile $dotfile
 done

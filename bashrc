@@ -24,13 +24,15 @@ prepend_to_path "$HOME/Qt5.5.1/5.5/clang_64/bin"
 prepend_to_path "/usr/local/opt/coreutils/libexec/gnubin"
 prepend_to_path "$HOME/.npm-global/bin"
 prepend_to_path "$HOME/Library/Python/2.7/bin"
-prepend_to_path "/opt/wavebox"
 
 # Load host-specific commands
 host_specific="$dotfile_dir/hosts/$HOSTNAME.sh"
 if [ -f $host_specific ]; then
   source $host_specific
 fi
+
+# For android studio
+export _JAVA_AWT_WM_NONREPARENTING=1
 
 # Node Version Manager (nvm)
 export NVM_DIR="$HOME/.nvm"
@@ -57,7 +59,3 @@ function update_dotfiles {
 if [[ $- == *i* ]]; then
   source "$dotfile_dir/bashrc_interactive"
 fi
-
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"

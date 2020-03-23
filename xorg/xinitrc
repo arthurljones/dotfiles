@@ -8,5 +8,7 @@ xfce4-power-manager &
 thunar --daemon &
 
 # Launch awesomewm
-mkdir -p ~/.cache
 #exec /usr/bin/awesome >> ~/.cache/awesome.stdout 2>> ~/.cache/awesome.stderr
+
+mkdir -p ~/.cache
+~/dotfiles/xorg/xsession
