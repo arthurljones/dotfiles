@@ -68,6 +68,9 @@ let g:ale_sign_column_always = 1
 " Enable ALE integration in airline
 let g:airline#extensions#ale#enabled = 1
 
+" Workaround for disappearing cursor bug https://github.com/dense-analysis/ale/issues/1334
+let g:ale_echo_cursor = 0
+
 " Automatically strip trailing whitespace
 autocmd FileType rb,js,jsx,css,sass,haml,yml,yaml autocmd BufWritePre <buffer> %s/\s\+$//e
 
