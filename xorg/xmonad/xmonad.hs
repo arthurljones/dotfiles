@@ -17,7 +17,7 @@ main = do
         , handleEventHook = handleEventHook def <+> docksEventHook
         , logHook = dynamicLogWithPP xmobarPP
             { ppOutput = hPutStrLn xmproc
-            , ppTitle = xmobarColor "darkgreen" "" . shorten 20
+            , ppTitle = xmobarColor "darkgreen" "" . shorten 120
             , ppHiddenNoWindows = xmobarColor "grey" ""
             }
         , startupHook = setWMName "LG3D"
