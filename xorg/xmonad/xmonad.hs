@@ -11,7 +11,7 @@ main = do
     xmonad $ def
         { terminal    = "terminator"
         , borderWidth = 2
-        , modMask     = mod1Mask
+        , modMask     = mod4Mask
         , manageHook = manageDocks <+> manageHook def
         , layoutHook = avoidStruts $ layoutHook def
         , handleEventHook = handleEventHook def <+> docksEventHook
