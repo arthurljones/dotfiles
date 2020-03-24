@@ -10,7 +10,7 @@ main = do
     xmproc <- spawnPipe "xmobar"
     xmonad $ def
         { terminal    = "terminator"
-        , borderWidth = 3
+        , borderWidth = 2
         , modMask     = mod1Mask
         , manageHook = manageDocks <+> manageHook def
         , layoutHook = avoidStruts $ layoutHook def
