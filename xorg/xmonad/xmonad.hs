@@ -5,6 +5,18 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig
 import System.IO
+import XMonad.Layout.Grid
+import XMonad.Layout.Reflect
+import XMonad.Layout.Spacing
+import XMonad.Layout.ThreeColumns
+
+myLayouts = avoidStruts $
+            layoutCol ||| layoutTall ||| layoutGrid ||| layoutMirror ||| layoutFull
+    where
+      layoutCol = ThreeColMid 1 (3/100) (1/3)
+      layoutTall = reflectHoriz $ Tall 1 (3/100) (3/5)
+      layoutGrid = Grid
+      layoutFull = Full
 
 main = do
     xmproc <- spawnPipe "xmobar"
@@ -13,7 +25,7 @@ main = do
         , borderWidth = 2
         , modMask     = mod4Mask
         , manageHook = manageDocks <+> manageHook def
-        , layoutHook = avoidStruts $ layoutHook def
+        , layoutHook = myLayouts
         , handleEventHook = handleEventHook def <+> docksEventHook
         , logHook = dynamicLogWithPP xmobarPP
             { ppOutput = hPutStrLn xmproc
