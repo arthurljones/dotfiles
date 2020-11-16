@@ -24,6 +24,8 @@ prepend_to_path "$HOME/Qt5.5.1/5.5/clang_64/bin"
 prepend_to_path "/usr/local/opt/coreutils/libexec/gnubin"
 prepend_to_path "$HOME/.npm-global/bin"
 prepend_to_path "$HOME/Library/Python/2.7/bin"
+prepend_to_path "$HOME/.local/bin"
+prepend_to_path "$HOME/Android/Sdk/platform-tools"
 
 # Load host-specific commands
 host_specific="$dotfile_dir/hosts/$HOSTNAME.sh"
