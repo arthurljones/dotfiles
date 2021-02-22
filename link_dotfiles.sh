@@ -77,13 +77,7 @@ for dotfile in \
     ideavimrc \
     gitconfig  \
     fonts  \
-    xorg/xinitrc \
-    xorg/Xmodmap \
-    xorg/xsessionrc \
-    xorg/xscreensaver \
-    xorg/i3status.conf \
     gemrc \
-    iterm2 \
     ; do
     link_dotfile $dotfile
 done

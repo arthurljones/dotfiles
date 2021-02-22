@@ -25,6 +25,7 @@ prepend_to_path "/usr/local/opt/coreutils/libexec/gnubin"
 prepend_to_path "$HOME/.npm-global/bin"
 prepend_to_path "$HOME/Library/Python/2.7/bin"
 prepend_to_path "/opt/wavebox"
+prepend_to_path "$HOME/lib/Android/Sdk/platform-tools"
 
 # Load host-specific commands
 host_specific="$dotfile_dir/hosts/$HOSTNAME.sh"

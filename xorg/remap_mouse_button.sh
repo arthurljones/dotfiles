@@ -33,6 +33,7 @@
     # Map buttons 8 and 9 (top side buttons) to button 2 (middle button)
     xinput set-button-map $mouse_id 1 2 3 4 5 6 7 2 2 10 11 12 13 14 15 16
     xinput --set-prop $mouse_id 'libinput Accel Speed' 0
-    xinput --set-prop $mouse_id 'Coordinate Transformation Matrix' 1 0 0 0 1 0 0 0 .4
+    xinput --set-prop $mouse_id 'Edev scrolling distance' .5 1 1
+    xinput --set-prop $mouse_id 'Coordinate Transformation Matrix' 1 0 0 0 1 0 0 0 .45
 
 } >> /home/aj/dotfiles/xorg/log.txt 2>&1
