@@ -20,17 +20,12 @@ function default_title {
 alias df="df -h"
 alias dfi="df -ih"
 alias sshl="ssh -L 8080:localhost:8080"
-alias :e="vim"
 alias r="./ride.rb"
 alias killass="tmux kill-session -t rwpgs"
-alias mobile_refresh="git fetch --all; git checkout develop; git reset --hard upstream/develop; git push"
-alias feh="feh -r --auto-rotate --scale-down"
-alias recent="find . -mmin -15 -type f"
-
-# Fedora/CentOS vim is not compiled with X11 support, but vimx is. 
-if [[ -e /usr/bin/vimx ]]; then
-    alias vim='/usr/bin/vimx'
-fi
+alias feh="feh -r --auto-rotate --scale-down -g 1x1"
+alias ls="ls --color=auto"
+alias grep="grep --color=auto"
+alias egrep="egrep --color=auto"
 
 # If there's an ssh-agent command but it hasn't been run yet, run it
 # and evaluate its results to set the appropriate env vars
@@ -61,7 +56,7 @@ if [[ $EUID -eq 0 ]]; then
 fi
 
 #Debian-specific commands
-if egrep -qs '(Debian|Raspbian|Mint|Ubuntu)' /etc/issue; then
+if egrep -qs '(Debian|Raspbian|Mint|Ubuntu|Pop\!_OS)' /etc/issue; then
     # set variable identifying the chroot you work in
     if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
         debian_chroot=$(cat /etc/debian_chroot)
@@ -79,19 +74,8 @@ if egrep -qs '(Debian|Raspbian|Mint|Ubuntu)' /etc/issue; then
     fi
 fi
 
-#OSX-specific commands
-if [[ $OSTYPE == "darwin"* ]]; then
-    if [ -f $(brew --prefix)/etc/bash_completion ]; then
-        . $(brew --prefix)/etc/bash_completion
-    fi
-fi
-
 #Set colors for various filetypes
 eval `dircolors -b $dotfile_dir/dircolors.ansi-dark`
-
-alias ls="ls --color=auto"
-alias grep="grep --color=auto"
-alias egrep="egrep --color=auto"
 
 export EDITOR=vim
 

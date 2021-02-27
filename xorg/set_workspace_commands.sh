@@ -35,3 +35,5 @@ gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-9  "['<Super><S
 gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-10 "['<Super><Shift>0']"
 
 gsettings set org.gnome.desktop.wm.keybindings close "['<Super><Shift>C']"
+
+gsettings set org.gnome.mutter overlay-key "['<Alt_R>Space']"
