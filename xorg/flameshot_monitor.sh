@@ -26,7 +26,9 @@ upload_screenshot() {
     printf $url | xclip;
 
     xclip -selection clipboard -t image/png -o | s3cmd put - "s3://$bucket/$fn" -c ~/.s3-screendrop.conf --mime-type="image/png" --acl-public
-    printf $url | xclip -selection clipboard;
+    if [ $? -eq 0 ]; then
+        printf $url | xclip -selection clipboard;
+    fi
 }
 
 # Start a dbus monitor that fires the upload function
