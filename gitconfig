@@ -182,7 +182,10 @@
         refreshdevelop = !git branch -u upstream/develop develop && git checkout develop && git fetch --all --prune && git reset --hard upstream/develop && git deletemerged
         refreshbeta = !git branch -u origin/beta beta && git checkout beta && git fetch --all --prune && git reset --hard upstream/beta && git deletemerged
 [merge]
-	tool = vimdiff
+    tool = meld
+[mergetool "meld"]
+    # Choose one of these 2 lines (not both!) explained below.
+    cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
