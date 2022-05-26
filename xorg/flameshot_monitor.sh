@@ -34,7 +34,7 @@ upload_screenshot() {
 }
 
 # Start a dbus monitor that fires the upload function
-dbus-monitor --profile "interface='org.dharkael.Flameshot',member='captureTaken'" |
+dbus-monitor --profile "interface='org.flameshot.Flameshot',member='captureTaken'" |
 while read -r line; do
     echo $line | grep captureTaken && upload_screenshot
 done

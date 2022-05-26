@@ -4,12 +4,12 @@ script_path=$(realpath $BASH_SOURCE)
 dotfile_dir=${script_path%/*}
 
 append_to_path() {
-    [[ -d $1 ]] && PATH="$PATH:$1"
+    [[ -d $1 && ! ":$PATH:" == *"$1"* ]] && PATH="$PATH:$1"
     export PATH
 }
 
 prepend_to_path() {
-    [[ -d $1 ]] && PATH="$1:$PATH"
+    [[ -d $1 && ! ":$PATH:" == *"$1"* ]] && PATH="$1:$PATH"
     export PATH
 }
 
@@ -26,7 +26,8 @@ prepend_to_path "/usr/local/opt/coreutils/libexec/gnubin"
 prepend_to_path "$HOME/.npm-global/bin"
 prepend_to_path "$HOME/Library/Python/2.7/bin"
 prepend_to_path "$HOME/.local/bin"
-prepend_to_path "$HOME/Android/Sdk/platform-tools"
+prepend_to_path "/opt/wavebox"
+prepend_to_path "$HOME/lib/Android/Sdk/platform-tools"
 
 # Load host-specific commands
 host_specific="$dotfile_dir/hosts/$HOSTNAME.sh"
