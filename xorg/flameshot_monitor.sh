@@ -21,6 +21,8 @@ upload_screenshot() {
     fn="$randstring-$str0.png";
     url="$base_url/$fn"
 
+    echo "filename: $fn"
+
     #middle click, which we can preload with the URL before it's uploaded. we can't
     #load the url into the main clipboard (ctl+v) because it contains the image data
     printf $url | xclip;

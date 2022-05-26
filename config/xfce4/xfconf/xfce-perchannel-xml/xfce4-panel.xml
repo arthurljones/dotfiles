@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<channel name="xfce4-panel" version="1.0">
+  <property name="configver" type="empty"/>
+  <property name="panels" type="empty">
+    <property name="panel-1" type="empty">
+      <property name="position" type="string" value="p=2;x=1861;y=9"/>
+      <property name="length" type="uint" value="1"/>
+      <property name="position-locked" type="bool" value="true"/>
+      <property name="size" type="uint" value="18"/>
+      <property name="background-style" type="uint" value="0"/>
+      <property name="background-alpha" type="empty"/>
+      <property name="enter-opacity" type="empty"/>
+      <property name="leave-opacity" type="empty"/>
+      <property name="plugin-ids" type="array">
+        <value type="int" value="9"/>
+        <value type="int" value="11"/>
+        <value type="int" value="10"/>
+        <value type="int" value="1"/>
+      </property>
+      <property name="mode" type="uint" value="0"/>
+      <property name="disable-struts" type="bool" value="false"/>
+      <property name="autohide-behavior" type="uint" value="0"/>
+      <property name="length-adjust" type="bool" value="true"/>
+      <property name="nrows" type="uint" value="1"/>
+    </property>
+  </property>
+  <property name="plugins" type="empty">
+    <property name="plugin-1" type="empty"/>
+    <property name="plugin-2" type="empty"/>
+    <property name="plugin-3" type="empty">
+      <property name="items" type="empty"/>
+    </property>
+    <property name="plugin-4" type="empty">
+      <property name="items" type="empty"/>
+    </property>
+    <property name="plugin-5" type="empty">
+      <property name="items" type="empty"/>
+    </property>
+    <property name="plugin-6" type="empty">
+      <property name="show-handle" type="empty"/>
+      <property name="middle-click" type="empty"/>
+    </property>
+    <property name="plugin-7" type="empty">
+      <property name="expand" type="empty"/>
+      <property name="style" type="empty"/>
+    </property>
+    <property name="plugin-8" type="empty">
+      <property name="names-visible" type="empty"/>
+      <property name="show-frame" type="empty"/>
+    </property>
+    <property name="plugin-9" type="empty"/>
+    <property name="plugin-10" type="string" value="systemload"/>
+    <property name="plugin-11" type="empty">
+      <property name="enable-keyboard-shortcuts" type="empty"/>
+      <property name="enable-mpris" type="empty"/>
+      <property name="mixer-command" type="empty"/>
+      <property name="show-notifications" type="empty"/>
+      <property name="mpris-players" type="string" value="chrome.instance21002;chrome.instance3532;chromium.instance10791;chromium.instance13585;chromium.instance13702;chromium.instance15266;chromium.instance15611;chromium.instance16623;chromium.instance17443;chromium.instance17752;chromium.instance18973;chromium.instance19744;chromium.instance21033;chromium.instance24810;chromium.instance25413;chromium.instance25844;chromium.instance2903;chromium.instance30381;chromium.instance31334;chromium.instance3136;chromium.instance314;chromium.instance3150;chromium.instance3352;chromium.instance3440;chromium.instance3761;chromium.instance3910;chromium.instance5289;chromium.instance5500;chromium.instance5562;chromium.instance5632;chromium.instance6207;chromium.instance9513;chromium.instance9660;firefox.instance12528;firefox.instance13072;firefox.instance14684;firefox.instance14724;firefox.instance16858;firefox.instance19034;firefox.instance19628;firefox.instance2003;firefox.instance21047;firefox.instance2146;firefox.instance2169;firefox.instance2220;firefox.instance2271;firefox.instance2335;firefox.instance2340;firefox.instance2354;firefox.instance2391;firefox.instance2393;firefox.instance2463;firefox.instance2504;firefox.instance2533;firefox.instance2549;firefox.instance2550;firefox.instance2553;firefox.instance2569;firefox.instance2581;firefox.instance2588;firefox.instance2594;firefox.instance2738;firefox.instance2751;firefox.instance2797;firefox.instance2841;firefox.instance2892;firefox.instance32172;firefox.instance32610;firefox.instance5774;spotify;vlc;xplayer"/>
+    </property>
+    <property name="plugin-12" type="empty">
+      <property name="digital-format" type="empty"/>
+    </property>
+  </property>
+</channel>
