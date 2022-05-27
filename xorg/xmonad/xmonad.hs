@@ -11,7 +11,7 @@ import XMonad.Layout.Spacing
 import XMonad.Layout.ThreeColumns
 
 myLayouts = avoidStruts $
-            layoutCol ||| layoutTall ||| layoutGrid ||| layoutMirror ||| layoutFull
+            layoutCol ||| layoutTall ||| layoutGrid ||| layoutFull
     where
       layoutCol = ThreeColMid 1 (3/100) (1/3)
       layoutTall = reflectHoriz $ Tall 1 (3/100) (3/5)
