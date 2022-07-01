@@ -38,7 +38,8 @@ fi
 # For android studio
 export _JAVA_AWT_WM_NONREPARENTING=1
 
-export JAVA_HOME="$HOMe/lib/jdk"
+export JAVA_HOME="$HOME/lib/jdk"
+export ANDROID_HOME="$HOME/lib/Android/Sdk"
 
 # Node Version Manager (nvm)
 export NVM_DIR="$HOME/.nvm"
