@@ -8,8 +8,12 @@
 #   access_key={bucket access key}
 #   secret_key={bucket secret key}
 # requires xclip for putting URL into clipboard
+set -u
 
-flameshot
+if !( which xclip > /dev/null && which s3cmd > /dev/null ); then
+    echo "Install xclip and s3cmd and try again"
+    exit 1
+fi
 
 upload_screenshot() {
     bucket="s.ajones.tech"
@@ -27,14 +31,34 @@ upload_screenshot() {
     #load the url into the main clipboard (ctl+v) because it contains the image data
     printf $url | xclip;
 
-    xclip -selection clipboard -t image/png -o | s3cmd put - "s3://$bucket/$fn" -c ~/.s3-screendrop.conf --mime-type="image/png" --acl-public
-    if [ $? -eq 0 ]; then
-        printf $url | xclip -selection clipboard;
-    fi
+    retry=1
+    while true; do
+        tmpfile=$(mktemp --suffix=".png") \
+            && xclip -selection clipboard -t image/png -o > "$tmpfile" \
+            && file -b "$tmpfile" | grep -q "image data" \
+            && cat "$tmpfile" | s3cmd put - "s3://$bucket/$fn" -c ~/.s3-screendrop.conf --mime-type="image/png" --acl-public
+        result=$?
+        rm -f "$tmpfile"
+        if [ $result -eq 0 ]; then
+            printf $url | xclip -selection clipboard;
+            break
+        elif [ $retry -eq 1 ]; then
+            echo "Failed to upload image, trying once more after a moment"
+            sleep 1
+            retry=0
+        else
+            echo "Failed to upload image again, aborting"
+            break
+        fi
+    done
 }
 
+echo "Starting dbus monitor"
 # Start a dbus monitor that fires the upload function
-dbus-monitor --profile "interface='org.flameshot.Flameshot',member='captureTaken'" |
-while read -r line; do
-    echo $line | grep captureTaken && upload_screenshot
-done
+# NOTE: Very brittle, we should probably snoop the 'attachScreenshotToClipboard' message instead, and scrape the bytes from that
+#dbus-monitor --profile "destination='org.flameshot.Flameshot',member='attachScreenshotToClipboard'"
+magicString="Capture saved to clipboard."
+dbus-monitor --session "interface='org.freedesktop.Notifications',member='Notify',arg0='flameshot',arg4='$magicString'" |
+    while read -r line; do
+        echo "$line" | cut -f 8 | grep "$magicString" && upload_screenshot
+    done
