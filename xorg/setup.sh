@@ -1,11 +1,9 @@
 #!/bin/bash
 
-pushd $HOME/dotfiles/xorg
+pushd $HOME/dotfiles/xorg > /dev/null
 
-for file in setup.d/*; do
+for file in script-setup.d/*; do
     /bin/bash "$file"
 done;
 
-./configure_input.sh
-
-popd
+popd > /dev/null
