@@ -21,8 +21,17 @@ for i in {1..20}; do
     fi
     echo -n "."
 done
+builtin_mic=$(pactl list short sources | egrep "pci-*analog-stereo.monitor")
+if [ $? -eq 0 ]; then
+    echo
+    echo "Using bulitin mic"
+    device=$(echo $usb_audio | cut -d " " -f 1)
+    pactl set-default-source $device
+    break
+fi
 if [ -z usb_audio ]; then 
     echo
     echo "Using built-in audio"
 fi
+
 
