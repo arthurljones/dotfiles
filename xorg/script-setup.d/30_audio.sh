@@ -7,7 +7,7 @@ systemctl --user restart pipewire-pulse.service
 systemctl --user daemon-reload
 
 echo -n "Waiting for audio devices to come online"
-for i in {1..20}; do
+for i in {1..10}; do
     sleep 0.1
 
     # Use USB audio if it's available
@@ -21,17 +21,17 @@ for i in {1..20}; do
     fi
     echo -n "."
 done
-builtin_mic=$(pactl list short sources | egrep "pci-*analog-stereo.monitor")
-if [ $? -eq 0 ]; then
-    echo
-    echo "Using bulitin mic"
-    device=$(echo $usb_audio | cut -d " " -f 1)
-    pactl set-default-source $device
-    break
-fi
-if [ -z usb_audio ]; then 
+
+if [ -z "$usb_audio" ]; then 
     echo
     echo "Using built-in audio"
+fi
+
+builtin_mic=$(pactl list short sources | egrep "alsa_input.*pci-.*analog-stereo")
+if [ $? -eq 0 ]; then
+    echo "Using bulitin mic"
+    device=$(echo $builtin_mic | cut -d " " -f 1)
+    pactl set-default-source $device
 fi
 
 

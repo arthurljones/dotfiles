@@ -2,17 +2,16 @@
 
 xorg_conf=$HOME/dotfiles/xorg
 
-# Remap mouse buttons (side buttons as middle click)
-$xorg_conf/remap_mouse_button.sh
+# Setup HW keymappings. Need to do this first, since it
+# causes all inputs to be reset
+pushd $xorg_conf/udev > /dev/null
+sudo ./install_hwdb.sh
+popd > /dev/null
 
-#setxkbmap -option ctrl:nocaps -option altwin:swap_alt_win
-
-# Load up our custom xmodmap
-# TODO: configure this so it works with both the built-in and kinesis keyboards
-xmodmap $xorg_conf/xmodmap
+sleep 0.5
 
 # Set keyboard repeat delay to 400ms and repeat rate to 100
 xset r rate 400 100
 
-# Disable trackpoint
-xinput set-prop "TPPS/2 IBM TrackPoint" "Device Enabled" 0
+# Disable trackpoint (disabled - thinkpad only)
+#xinput set-prop "TPPS/2 IBM TrackPoint" "Device Enabled" 0

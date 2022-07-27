@@ -1,0 +1,25 @@
+# NOTE: You can use `sudo evtest` and `sudo evemu-describe` to 
+# get details about devices and their keycodes
+
+# All USB devices (tested with Dell SK-8115)
+evdev:input:b0003*
+  KEYBOARD_KEY_70039=leftctrl # Bind capslock to leftctrl
+  KEYBOARD_KEY_700e2=leftmeta # Bind leftalt to leftmeta
+  KEYBOARD_KEY_700e3=leftalt  # Bind leftmeta to leftalt
+
+# Builtin galp5 keyboard
+evdev:atkbd:dmi:bvn*:bvr*:bd*:svnSystem76:pnGalagoPro:*
+  KEYBOARD_KEY_3a=leftctrl # Bind capslock to leftctrl
+  KEYBOARD_KEY_38=leftmeta # Bind leftalt to leftmeta
+  KEYBOARD_KEY_db=leftalt  # Bind leftmeta to leftalt
+
+# Kinesis Freestyle 2 Mac (left alt and meta are already where we want them)
+evdev:input:b0003v058Fp9410*
+  KEYBOARD_KEY_700e2=leftalt  # Bind leftalt to leftalt
+  KEYBOARD_KEY_700e3=leftmeta # Bind leftmeta to leftmeta
+  
+# Logitech M570 wireless trackball mouse
+evdev:input:b0003v046Dp1028*
+  KEYBOARD_KEY_90005=btn_middle # "forward" side button
+  KEYBOARD_KEY_90004=btn_middle # "back" side button
+

@@ -1,2 +1,0 @@
-ACTION=="add", SUBSYSTEM=="input", KERNEL=="mouse*" RUN+="/bin/su -l -c '/home/aj/dotfiles/xorg/remap_mouse_button.sh' aj"
-
