@@ -17,6 +17,13 @@ evdev:atkbd:dmi:bvn*:bvr*:bd*:svnSystem76:pnGalagoPro:*
 evdev:input:b0003v058Fp9410*
   KEYBOARD_KEY_700e2=leftalt  # Bind leftalt to leftalt
   KEYBOARD_KEY_700e3=leftmeta # Bind leftmeta to leftmeta
+  KEYBOARD_KEY_700e7=rightctrl # Bind rightmeta to rightctrl
+
+# MACALLY QKEYB mac keyboard, same as kinesis freestyle 2
+evdev:input:b0003v2222p0039*
+  KEYBOARD_KEY_700e2=leftalt  # Bind leftalt to leftalt
+  KEYBOARD_KEY_700e3=leftmeta # Bind leftmeta to leftmeta
+  KEYBOARD_KEY_700e7=rightctrl # Bind rightmeta to rightctrl
   
 # Logitech M570 wireless trackball mouse
 evdev:input:b0003v046Dp1028*
