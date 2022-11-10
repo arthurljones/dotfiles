@@ -180,20 +180,23 @@
     snapshot = !git stash save "snapshot: $(date)" && git stash apply "stash@{0}"
     uncommitted = "!f() { git diff --exit-code > /dev/null && git diff --cached --exit-code > /dev/null; }; g() { echo 'Uncommitted changes' && exit 1; }; f || g"
     deletemerged = !git branch --merged | egrep -v \"(^\\*|master|devel|beta)\" | xargs git branch -d
+    gone = !git-gone
     refreshdevelop = ! \
         git uncommitted \
         && git branch -u upstream/develop develop \
         && git checkout develop \
         && git fetch --all --prune \
         && git reset --hard upstream/develop \
-        && git deletemerged
+        && git deletegone 
+        ## && git deletemerged
     refreshbeta = ! \
         git uncommitted \
-        && git branch -u origin/beta beta \
+        && git branch -u upstream/beta beta \
         && git checkout beta \
         && git fetch --all --prune \
         && git reset --hard upstream/beta \
-        && git deletemerged
+        && git deletegone
+        # && git deletemerged
 [merge]
     tool = meld
 [mergetool "meld"]

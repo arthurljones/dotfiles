@@ -1,0 +1,2 @@
+#!/bin/bash
+git-gone | xargs git branch -D
