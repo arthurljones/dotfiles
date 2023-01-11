@@ -1,5 +1,7 @@
 # NOTE: You can use `sudo evtest` and `sudo evemu-describe` to 
 # get details about devices and their keycodes
+# leftmeta = xmonad control key
+# leftalt = normal alt key
 
 # All USB devices (tested with Dell SK-8115)
 evdev:input:b0003*
@@ -15,15 +17,14 @@ evdev:atkbd:dmi:bvn*:bvr*:bd*:svnSystem76:pnGalagoPro:*
 
 # Kinesis Freestyle 2 Mac (left alt and meta are already where we want them)
 evdev:input:b0003v058Fp9410*
-  KEYBOARD_KEY_700e2=leftalt  # Bind leftalt to leftalt
-  KEYBOARD_KEY_700e3=leftmeta # Bind leftmeta to leftmeta
-  KEYBOARD_KEY_700e7=rightctrl # Bind rightmeta to rightctrl
-
 # MACALLY QKEYB mac keyboard, same as kinesis freestyle 2
 evdev:input:b0003v2222p0039*
+# Keychron mac keybord, same as kinesis freestyle 2
+evdev:input:b0003v05ACp024F*
   KEYBOARD_KEY_700e2=leftalt  # Bind leftalt to leftalt
   KEYBOARD_KEY_700e3=leftmeta # Bind leftmeta to leftmeta
   KEYBOARD_KEY_700e7=rightctrl # Bind rightmeta to rightctrl
+  MAC_KEYBOARD=1
   
 # Logitech M570 wireless trackball mouse
 evdev:input:b0003v046Dp1028*
