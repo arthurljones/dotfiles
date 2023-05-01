@@ -37,5 +37,5 @@ main = do
 
 myKeys = [ ("C-S-5", spawn "flameshot gui")
     , (("M-b"), sendMessage ToggleStruts)
-    , (("M-C-s"), spawn "/home/aj/dotfiles/xorg/sleep_screen.sh")
+    , (("M-C-s"), spawn "systemctl suspend") -- "/home/aj/dotfiles/xorg/sleep_screen.sh")
     ]
