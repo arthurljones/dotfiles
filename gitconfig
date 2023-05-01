@@ -185,6 +185,7 @@
         git uncommitted \
         && git branch -u upstream/develop develop \
         && git checkout develop \
+        && git submodule update --init \
         && git fetch --all --prune \
         && git reset --hard upstream/develop \
         && git deletegone 
