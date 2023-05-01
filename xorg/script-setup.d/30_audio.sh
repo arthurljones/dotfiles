@@ -32,6 +32,9 @@ if [ $? -eq 0 ]; then
     echo "Using bulitin mic"
     device=$(echo $builtin_mic | cut -d " " -f 1)
     pactl set-default-source $device
+    # On reboot, mic boost gets cranked to max, and the capture level is set to a low value, a con reboot, for unknown reasons
+    amixer -q -c 0 sset 'Internal Mic Boost' 0%
+    amixer -q -c 0 sset 'Capture' 75%
 fi
 
 
