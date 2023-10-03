@@ -181,6 +181,7 @@
 	deletemerged = !git branch --merged | egrep -v \"(^\\*|master|dev|beta)\" | xargs git branch -d
         refreshdevelop = !git fetch --all --prune && git checkout develop && git reset --hard upstream/develop && git deletemerged
         refreshbeta = !git fetch --all --prune && git checkout beta && git reset --hard upstream/beta && git deletemerged
+        refreshmaster = !git fetch --all --prune && git checkout master && git reset --hard origin/master
 [merge]
 	tool = vimdiff
 [filter "lfs"]
@@ -188,3 +189,6 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential

@@ -20,12 +20,14 @@ append_to_path "/usr/sbin"
 append_to_path "/usr/local/sbin"
 prepend_to_path "$HOME/bin"
 prepend_to_path "$HOME/tools"
+prepend_to_path "$HOME/lib/idea-IU-213.5744.223/bin"
 prepend_to_path "$HOME/Qt5.5.1/5.5/clang_64/bin"
 prepend_to_path "/usr/local/opt/coreutils/libexec/gnubin"
 prepend_to_path "$HOME/.npm-global/bin"
 prepend_to_path "$HOME/Library/Python/2.7/bin"
 prepend_to_path "/opt/wavebox"
 prepend_to_path "$HOME/lib/Android/Sdk/platform-tools"
+prepend_to_path "$HOME/lib/calibre/bin"
 
 # Load host-specific commands
 host_specific="$dotfile_dir/hosts/$HOSTNAME.sh"
@@ -59,3 +61,7 @@ if [[ $- == *i* ]]; then
   source "$dotfile_dir/bashrc_interactive"
 fi
 
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
