@@ -1,0 +1,1 @@
+ACTION=="change", SUBSYSTEM=="drm", ENV{DISPLAY}=":0", ENV{XAUTHORITY}="/home/aj/.Xauthority", RUN+="/home/aj/dotfiles/udev/dispatch.sh display_change" OWNER="aj"

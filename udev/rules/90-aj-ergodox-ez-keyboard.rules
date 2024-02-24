@@ -1,0 +1,7 @@
+# Ergodox EZ 3297:4974
+# event10:
+#
+ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="3297", ATTRS{idProduct}=="4974", RUN+="/home/aj/dotfiles/udev/dispatch.sh ergodox_ez_add", OWNER="aj"
+ACTION=="remove", SUBSYSTEMS=="usb", ATTRS{idVendor}=="3297", ATTRS{idProduct}=="4974", RUN+="/home/aj/dotfiles/udev/dispatch.sh ergodox_ez_remove", OWNER="aj"
+
+
