@@ -8,3 +8,4 @@ else
 fi
 echo "xrandr $internal $external"
 xrandr $internal $external
+#xrandr --output eDP-1 --brightness 0.35

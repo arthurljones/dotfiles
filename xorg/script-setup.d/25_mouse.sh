@@ -36,3 +36,4 @@ else
     exit 1
 fi
 
+xinput set-button-map $mouse_id 1 2 3 4 5 6 7 2 2 10 11 12 13 14 15 16

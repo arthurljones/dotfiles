@@ -66,3 +66,8 @@ function update_dotfiles {
 if [[ $- == *i* ]]; then
   source "$dotfile_dir/bashrc_interactive"
 fi
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+. "$HOME/.cargo/env"
