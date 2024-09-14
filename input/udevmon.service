@@ -1,0 +1,8 @@
+[Unit]
+Description=udevmon key remapping service
+
+[Service]
+ExecStart=/usr/local/bin/udevmon
+
+[Install]
+WantedBy=multi-user.target

@@ -5,7 +5,9 @@ xorg_conf=$HOME/dotfiles/xorg
 # Remap mouse buttons (side buttons as middle click)
 $xorg_conf/remap_mouse_button.sh
 
-setxkbmap -option ctrl:nocaps -option altwin:swap_alt_win
+# Clear previous settings
+setxkbmap us -option
+setxkbmap us -variant dvorak  -option altwin:swap_alt_win
 
 # Set keyboard repeat delay to 400ms and repeat rate to 100
 xset r rate 400 100
