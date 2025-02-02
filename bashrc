@@ -29,6 +29,8 @@ prepend_to_path "$HOME/Library/Python/2.7/bin"
 prepend_to_path "/opt/wavebox"
 prepend_to_path "$HOME/lib/Android/Sdk/platform-tools"
 prepend_to_path "$HOME/lib/calibre/bin"
+prepend_to_path "$HOME/.dotnet"
+prepend_to_path "$HOME/.dotnet/tools"
 
 # Load host-specific commands
 host_specific="$dotfile_dir/hosts/$HOSTNAME.sh"
@@ -58,11 +60,16 @@ function update_dotfiles {
   fi
 }
 
+. "$HOME/.cargo/env"
+
+export DOTNET_ROOT="$HOME/.dotnet"
+
 if [[ $- == *i* ]]; then
   source "$dotfile_dir/bashrc_interactive"
 fi
 
-
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+[ -f "/home/aj/.ghcup/env" ] && . "/home/aj/.ghcup/env" # ghcup-env
