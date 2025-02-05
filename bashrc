@@ -19,6 +19,7 @@ append_to_path "/sbin"
 append_to_path "/usr/sbin"
 append_to_path "/usr/local/sbin"
 prepend_to_path "$HOME/bin"
+prepend_to_path "$HOME/.local/bin"
 prepend_to_path "$HOME/lib/idea/bin"
 prepend_to_path "$HOME/tools"
 prepend_to_path "$HOME/Qt5.5.1/5.5/clang_64/bin"
@@ -38,7 +39,7 @@ fi
 # For android studio
 export _JAVA_AWT_WM_NONREPARENTING=1
 
-export JAVA_HOME="$HOME/lib/jdk"
+export JAVA_HOME="/usr/lib/jvm/java-21-openjdk-amd64"
 export ANDROID_HOME="$HOME/lib/Android/Sdk"
 
 # Node Version Manager (nvm)

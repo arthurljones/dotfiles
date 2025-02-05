@@ -21,6 +21,7 @@ fi
 
 m575_id=$(xinput list | grep "M575" | head -n 1 |  sed 's/.*id=\([0-9]\+\).*/\1/g')
 m570_id=$(xinput list | grep "M570" | head -n 1 |  sed 's/.*id=\([0-9]\+\).*/\1/g')
+generic_id=$(xinput list | grep "Logitech USB Receiver Mouse" | head -n 1 | sed 's/.*id=\([0-9]\+\).*/\1/g')
 
 if [ -n "$m575_id" ]; then
     echo "Setting up M575 acceleration"
@@ -31,6 +32,11 @@ if [ -n "$m575_id" ]; then
 elif [ -n "$m570_id" ]; then
     echo "Using M570"
     mouse_id="$m570_id"
+elif [ -n "$generic_id" ]; then
+    # Probably MX Ergo (S)
+    echo "Using Generic Logitech Mouse"
+    mouse_id="$generic_id"
+    xinput --set-prop $mouse_id 'Coordinate Transformation Matrix' 1 0 0 0 1 0 0 0 0.6 
 else
     echo "Couldn't find mouse ID" >&2
     exit 1
