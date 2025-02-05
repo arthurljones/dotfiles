@@ -6,8 +6,9 @@
 # All USB devices (tested with Dell SK-8115)
 evdev:input:b0003*
   KEYBOARD_KEY_70039=leftctrl # Bind capslock to leftctrl
-  KEYBOARD_KEY_700e2=leftmeta # Bind leftalt to leftmeta
-  KEYBOARD_KEY_700e3=leftalt  # Bind leftmeta to leftalt
+# disabled in favor of swapping in firmware
+#  KEYBOARD_KEY_700e2=leftmeta # Bind leftalt to leftmeta
+#  KEYBOARD_KEY_700e3=leftalt  # Bind leftmeta to leftalt
 
 # Builtin galp5 keyboard
 evdev:atkbd:dmi:bvn*:bvr*:bd*:svnSystem76:pnGalagoPro:*
