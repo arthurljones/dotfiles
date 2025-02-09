@@ -60,7 +60,7 @@ if [[ $EUID -eq 0 ]]; then
 fi
 
 #Debian-specific commands
-if egrep -qs '(Debian|Raspbian|Mint|Ubuntu)' /etc/issue; then
+if egrep -qs '(Debian|Raspbian|Mint|Ubuntu|Pop!)' /etc/issue; then
     # set variable identifying the chroot you work in
     if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
         debian_chroot=$(cat /etc/debian_chroot)

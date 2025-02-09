@@ -26,6 +26,7 @@ prepend_to_path "/usr/local/opt/coreutils/libexec/gnubin"
 prepend_to_path "$HOME/.npm-global/bin"
 prepend_to_path "$HOME/Library/Python/2.7/bin"
 prepend_to_path "$HOME/.local/bin"
+prepend_to_path "$HOME/lib/android-studio/bin"
 prepend_to_path "$HOME/Android/Sdk/platform-tools"
 
 # Load host-specific commands
