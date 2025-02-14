@@ -78,8 +78,6 @@ for dotfile in \
     ideavimrc \
     gitconfig  \
     fonts  \
-    xorg/xinitrc \
-    xorg/xsession \
     xorg/xscreensaver \
     gemrc \
     xorg/xmonad \

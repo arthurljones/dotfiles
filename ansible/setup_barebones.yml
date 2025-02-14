@@ -1,9 +1,0 @@
----
-
-- hosts: barebones
-  remote_user: aj
-  any_errors_fatal: yes
-
-  roles:
-    - barebones
-

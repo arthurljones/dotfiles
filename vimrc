@@ -131,6 +131,10 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+" Disable audio and visual bells
+set noerrorbells visualbell t_vb=
+autocmd GUIEnter * set visualbell t_vb=
+
 " More natural split directions
 set splitbelow
 set splitright
@@ -232,6 +236,9 @@ set confirm
 
 " Use visual bell instead of beeping when doing something wrong
 set visualbell
+
+" Don't use bells at all even for errors
+set noerrorbells
 
 " And reset the terminal code for the visual bell. If visualbell is set, and
 " this line is also included, vim will neither flash nor beep. If visualbell

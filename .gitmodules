@@ -61,3 +61,6 @@
 [submodule "vim/bundle/keepalived-syntax"]
 	path = vim/bundle/keepalived-syntax
 	url = https://github.com/glidenote/keepalived-syntax.vim
+[submodule "vim/bundle/python-syntax"]
+	path = vim/bundle/python-syntax
+	url = https://github.com/vim-python/python-syntax.git

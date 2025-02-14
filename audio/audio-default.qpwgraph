@@ -1,0 +1,94 @@
+<!DOCTYPE patchbay>
+<patchbay name="audio-default" version="0.6.2.1git.c693b6.dirty">
+ <items>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="common-source" port="common-source:output_FL"/>
+   <input node="USB Advanced Audio Device Analog Stereo" port="USB Advanced Audio Device:playback_FL"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="loopback-651997-30" port="loopback-651997-30:output_FR"/>
+   <input node="USB Advanced Audio Device Analog Stereo" port="USB Advanced Audio Device:playback_FR"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="Firefox-1" port="Firefox:output_FL"/>
+   <input node="output-common-sink" port="output-common-sink:playback_FL"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="spotify" port="spotify:output_FL"/>
+   <input node="common-sink" port="common-sink:playback_FL"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="loopback-651695-30" port="loopback-651695-30:output_FR"/>
+   <input node="USB Advanced Audio Device Analog Stereo" port="USB Advanced Audio Device:playback_FR"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="Firefox" port="Firefox:output_FR"/>
+   <input node="output-common-sink" port="output-common-sink:playback_FR"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="spotify" port="spotify:output_FR"/>
+   <input node="common-sink" port="common-sink:playback_FR"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="input-common-source" port="input-common-source:capture_FL"/>
+   <input node="Firefox" port="Firefox:input_FL"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="loopback-651695-30" port="loopback-651695-30:output_FL"/>
+   <input node="USB Advanced Audio Device Analog Stereo" port="USB Advanced Audio Device:playback_FL"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="spotify" port="spotify:output_FR"/>
+   <input node="output-common-sink" port="output-common-sink:playback_FR"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="output-common-source" port="output-common-source:capture_FL"/>
+   <input node="USB Advanced Audio Device Analog Stereo" port="USB Advanced Audio Device:playback_FL"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="Built-in Audio Analog Stereo" port="ALC293 Analog:capture_FL"/>
+   <input node="input-common-sink" port="input-common-sink:playback_FL"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="Firefox-1" port="Firefox:output_FR"/>
+   <input node="output-common-sink" port="output-common-sink:playback_FR"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="common-source" port="common-source:output_FR"/>
+   <input node="USB Advanced Audio Device Analog Stereo" port="USB Advanced Audio Device:playback_FR"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="loopback-651997-30" port="loopback-651997-30:output_FL"/>
+   <input node="USB Advanced Audio Device Analog Stereo" port="USB Advanced Audio Device:playback_FL"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="Wavebox" port="Wavebox:output_FR"/>
+   <input node="input-common-sink" port="input-common-sink:playback_FR"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="input-common-source" port="input-common-source:capture_FR"/>
+   <input node="Firefox" port="Firefox:input_FR"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="output-common-source" port="output-common-source:capture_FR"/>
+   <input node="USB Advanced Audio Device Analog Stereo" port="USB Advanced Audio Device:playback_FR"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="spotify" port="spotify:output_FL"/>
+   <input node="output-common-sink" port="output-common-sink:playback_FL"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="Firefox" port="Firefox:output_FL"/>
+   <input node="output-common-sink" port="output-common-sink:playback_FL"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="Built-in Audio Analog Stereo" port="ALC293 Analog:capture_FR"/>
+   <input node="input-common-sink" port="input-common-sink:playback_FR"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="Wavebox" port="Wavebox:output_FL"/>
+   <input node="input-common-sink" port="input-common-sink:playback_FL"/>
+  </item>
+ </items>
+</patchbay>
+
