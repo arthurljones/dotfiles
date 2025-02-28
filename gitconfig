@@ -202,7 +202,7 @@
     tool = meld
 [mergetool "meld"]
     # Choose one of these 2 lines (not both!) explained below.
-    cmd = meld --auto-merge "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
+    cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
 [filter "lfs"]
     clean = git-lfs clean -- %f
     smudge = git-lfs smudge -- %f
