@@ -5,7 +5,7 @@ if [ "$EUID" -ne 0 ]
 fi
 
 for file in /etc/udev/hwdb.d/*.hwdb; do
-    rm $file
+    rm -f $file
 done
 cp *.hwdb /etc/udev/hwdb.d/
 systemd-hwdb update

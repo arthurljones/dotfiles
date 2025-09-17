@@ -12,6 +12,6 @@ evdev:atkbd:dmi:bvn*:bvr*:bd*:svnSystem76:pnGalagoPro:*
 
 # Logitech M570 wireless trackball mouse
 evdev:input:b0003v046Dp1028*
+evdev:input:b0003v046Dp4096*
   KEYBOARD_KEY_90005=btn_middle # "forward" side button
   KEYBOARD_KEY_90004=btn_middle # "back" side button
-
