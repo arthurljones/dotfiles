@@ -4,31 +4,35 @@ script_path=$(realpath $BASH_SOURCE)
 dotfile_dir=${script_path%/*}
 
 append_to_path() {
-    [[ -d $1 && ! ":$PATH:" == *"$1"* ]] && PATH="$PATH:$1"
+    #[[ -d $1 && ! ":$PATH:" == *"$1"* ]] && 
+    PATH="$PATH:$1"
     export PATH
+    #echo "appended $1 to PATH"
+    #echo $PATH
 }
 
 prepend_to_path() {
-    [[ -d $1 && ! ":$PATH:" == *"$1"* ]] && PATH="$1:$PATH"
+    #[[ -d $1 && ! ":$PATH:" == *"$1"* ]] && 
+    PATH="$1:$PATH"
     export PATH
+    #echo "prepended $1 to PATH"
+    #echo $PATH
 }
 
 export TZ='America/Los_Angeles'
-
+export PATH=$(getconf PATH)
 append_to_path "/sbin"
 append_to_path "/usr/sbin"
 append_to_path "/usr/local/sbin"
+append_to_path "/usr/local/bin"
 prepend_to_path "$HOME/bin"
 prepend_to_path "$HOME/.local/bin"
 prepend_to_path "$HOME/lib/idea/bin"
 prepend_to_path "$HOME/tools"
-prepend_to_path "$HOME/Qt5.5.1/5.5/clang_64/bin"
 prepend_to_path "/usr/local/opt/coreutils/libexec/gnubin"
 prepend_to_path "$HOME/.npm-global/bin"
-prepend_to_path "$HOME/Library/Python/2.7/bin"
-prepend_to_path "$HOME/.local/bin"
-prepend_to_path "/opt/wavebox"
 prepend_to_path "$HOME/lib/Android/Sdk/platform-tools"
+prepend_to_path "$HOME/opt/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin"
 
 # Load host-specific commands
 host_specific="$dotfile_dir/hosts/$HOSTNAME.sh"
@@ -68,11 +72,9 @@ if [[ $- == *i* ]]; then
   source "$dotfile_dir/bashrc_interactive"
 fi
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-. "$HOME/.cargo/env"
+export PICOTOOL_FETCH_FROM_GIT_PATH=/home/aj/pico/picotool
+export PICO_EXAMPLES_PATH=/home/aj/pico/pico-examples
+export PICO_EXTRAS_PATH=/home/aj/pico/pico-extras
+export PICO_PLAYGROUND_PATH=/home/aj/pico/pico-playground
+export PICO_SDK_PATH=/home/aj/pico/pico-sdk
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-eval "$(/home/aj/.local/bin/mise activate bash)"
